@@ -1,83 +1,136 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <title>Kim Harjamäki · AI Voice & Cloud Architect</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta
-    name="description"
-    content="Interactive AI voice demo by Kim Harjamäki. Try the demo, connect on LinkedIn, and explore cloud & AI projects."
-  />
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>Hi, I'm Kim Harjamäki</h1>
-      <p class="subtitle">Azure Architect, DevOps Engineer & AI Voice Innovator</p>
+body {
+  font-family: "Inter", sans-serif;
+  background: #0a0a0f;
+  color: #eef2f7;
+  line-height: 1.6;
+}
 
-      <div class="buttons">
-        <a class="btn primary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">Connect on LinkedIn</a>
-        <a class="btn secondary" href="#demo">Try the Voice Demo</a>
-        <a class="btn accent" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs</a>
-      </div>
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
+  padding: 20px;
+}
 
-      <p class="hero-note">
-        Built by Kim — showcasing real-time AI voice demos and cloud automation.
-      </p>
-    </div>
-  </section>
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f0f19, #1d1f2e);
+}
 
-  <!-- Demo -->
-  <section id="demo" class="demo-section">
-    <div class="container">
-      <h2>Interactive AI Voice Demo</h2>
-      <p>Type your text and hear how it sounds using a modern AI voice engine.</p>
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
 
-      <form id="demo-form">
-        <textarea id="demo-text" placeholder="Type something..." rows="4"></textarea>
-        <button type="submit" class="btn primary btn-large">Generate Voice</button>
-      </form>
+.subtitle {
+  font-size: 1.25rem;
+  color: #c1c5ce;
+  margin-bottom: 20px;
+}
 
-      <audio id="audio-player" controls></audio>
+.buttons {
+  margin-top: 16px;
+}
 
-      <p class="affiliate-note">
-        Want more voices?  
-        <a class="affiliate-link" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs with my referral link</a>
-      </p>
-    </div>
-  </section>
+.btn {
+  text-decoration: none;
+  padding: 12px 24px;
+  margin: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
 
-  <!-- About You -->
-  <section class="about-section">
-    <div class="container">
-      <h2>About Me</h2>
-      <p>
-        I design and build scalable cloud solutions with Azure and DevOps,
-        and prototype AI voice applications that integrate real-time speech
-        technologies. I focus on delivering reliable automation and clear
-        technical solutions.
-      </p>
-      <div class="buttons">
-        <a class="btn secondary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">More on LinkedIn</a>
-        <a class="btn accent" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs</a>
-      </div>
-    </div>
-  </section>
+.btn.primary {
+  background: #4c7dff;
+  color: #fff;
+}
 
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="container">
-      <p>© 2025 Kim Harjamäki · Azure, DevOps & AI Voice</p>
-      <p>
-        Demo powered by ElevenLabs —  
-        <a class="affiliate-link" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs with my link</a>
-      </p>
-    </div>
-  </footer>
+.btn.primary:hover {
+  background: #3f69d1;
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+.btn.secondary {
+  background: #1c1e2b;
+  border: 2px solid #4c7dff;
+  color: #4c7dff;
+}
+
+.btn.secondary:hover {
+  background: #32354a;
+}
+
+/* Accent call-to-action button */
+.btn.accent {
+  background: #ff6e40;
+  color: #fff;
+  border: 1px solid #ff6e40;
+}
+
+.btn.accent:hover {
+  background: #e85d32;
+}
+
+/* Sections */
+.demo-section, .about-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.demo-section h2,
+.about-section h2 {
+  margin-bottom: 12px;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+#demo-form {
+  margin: auto;
+  max-width: 640px;
+}
+
+#demo-text {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #3b3f52;
+  margin-bottom: 12px;
+  background: #11141f;
+  color: #eef2f7;
+}
+
+.btn-large {
+  width: 100%;
+}
+
+.affiliate-note {
+  margin-top: 14px;
+  font-size: 0.95rem;
+  color: #c1c5ce;
+}
+
+.affiliate-link {
+  color: #ff6e40;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  padding: 18px;
+  background: #0d0d19;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8891a1;
+}
