@@ -21,6 +21,14 @@ This project also acts as a portfolio showcase for Azure, DevOps, and AI integra
 ![CSS](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![ElevenLabs](https://img.shields.io/badge/ElevenLabs-Voice_AI-orange?style=for-the-badge)
+![Azure DevOps](https://img.shields.io/badge/Azure%20DevOps-%230078D4.svg?style=flat-square&logo=azuredevops&logoColor=white)
+![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-%232671E5.svg?style=flat-square&logo=githubactions&logoColor=white)
+![Terraform](https://img.shields.io/badge/Terraform-%2334D058.svg?style=flat-square&logo=terraform&logoColor=white)
+![Bicep](https://img.shields.io/badge/Bicep-%2317A8E3.svg?style=flat-square&logo=azure&logoColor=white)
+![Kubernetes](https://img.shields.io/badge/Kubernetes-%23326CE5.svg?style=flat-square&logo=kubernetes&logoColor=white)
+![Mermaid](https://img.shields.io/badge/Mermaid-DM99FF?style=flat-square&logo=mermaid&logoColor=white)
+![Security](https://img.shields.io/badge/Security-ISO27000-compliant-blue?style=flat-square)
+
 
 ---
 
