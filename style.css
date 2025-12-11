@@ -1,0 +1,124 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  background: #0a0a0f;
+  color: #eef2f7;
+  line-height: 1.6;
+}
+
+.container {
+  width: 100%;
+  max-width: 1024px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(135deg, #0f0f19, #1d1f2e);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 8px;
+  color: #ffffff;
+}
+
+.subtitle {
+  font-size: 1.25rem;
+  color: #c1c5ce;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  margin-top: 16px;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 12px 24px;
+  margin: 8px;
+  font-size: 1rem;
+  border-radius: 6px;
+  display: inline-block;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.btn.primary {
+  background: #4c7dff;
+  color: #fff;
+}
+
+.btn.primary:hover {
+  background: #3f69d1;
+}
+
+.btn.secondary {
+  background: #1c1e2b;
+  border: 2px solid #4c7dff;
+  color: #4c7dff;
+}
+
+.btn.secondary:hover {
+  background: #32354a;
+}
+
+/* Sections */
+.demo-section, .about-section {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.demo-section h2,
+.about-section h2 {
+  margin-bottom: 12px;
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+#demo-form {
+  margin: auto;
+  max-width: 640px;
+}
+
+#demo-text {
+  width: 100%;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #3b3f52;
+  margin-bottom: 12px;
+  background: #11141f;
+  color: #eef2f7;
+}
+
+.btn-large {
+  width: 100%;
+}
+
+.affiliate-note {
+  margin-top: 14px;
+  font-size: 0.9rem;
+  color: #c1c5ce;
+}
+
+.affiliate-link {
+  color: #4c7dff;
+  font-weight: bold;
+}
+
+/* Footer */
+.footer {
+  padding: 18px;
+  background: #0d0d19;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #8891a1;
+}
