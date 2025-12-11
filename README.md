@@ -24,4 +24,15 @@ https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs
 ---
 
 ## 📂 Project Structure
+kim-ai-voice-demo/
+│── index.html        # Main landing page + demo UI
+│── style.css         # Styling
+│── script.js         # Demo logic
+│
+│── elevenlabs/
+│     └── index.html  # Affiliate redirect
+│
+└── assets/           # (optional) images, screenshots
+
+
 
