@@ -31,14 +31,14 @@ This project also acts as a portfolio showcase for Azure, DevOps, and AI integra
 - Multiple voice + language options
 - Clean UI hosted on GitHub Pages
 - Easy backend integration (Node/Python)
-- Affiliate redirect for ElevenLabs testing
+- Masked affiliate redirect
 - Developer-friendly structure and demo flow
 
 ---
 
 ## 📂 Project Structure
 
-```text
+~~~text
 kim-ai-voice-demo/
 │── index.html         # Main landing page + demo UI
 │── style.css          # Styling
@@ -48,3 +48,47 @@ kim-ai-voice-demo/
 │     └── index.html   # Affiliate redirect
 │
 └── assets/            # (optional) images, screenshots
+~~~
+
+---
+
+## 📌 Coming Soon
+
+- Secure backend examples (Node.js + Python)
+- Android app source code (real-time TTS + STT)
+- Azure Functions deployment template
+- Voice agent architecture diagrams
+- Live streaming + WebSocket integration
+
+---
+
+## 📚 How It Works
+
+1. **Frontend (GitHub Pages)**  
+   Text, language, persona → forms → backend API.
+
+2. **Backend (Node/Python — coming soon)**  
+   Handles ElevenLabs requests using environment-stored secrets.
+
+3. **Audio Response**  
+   Returns audio files or streams back to browser/mobile app.
+
+---
+
+## 👤 About Me
+
+Hi, I'm **Kim** — Azure Architect, DevOps Engineer, and AI Voice Developer.  
+I design automation-heavy cloud architectures and build cutting-edge real-time voice experiences using ElevenLabs and other AI tools.
+
+If you're exploring Azure, DevOps, hybrid cloud, or AI voice technology, feel free to connect.
+
+🔗 **LinkedIn:**  
+https://linkedin.com/in/kimharjamaki  
+
+🔗 **Live Demo:**  
+https://ogeonx-ai.github.io/kim-ai-voice-demo/  
+
+🔥 **Try the same voice engine I use:**  
+https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs  
+
+---
