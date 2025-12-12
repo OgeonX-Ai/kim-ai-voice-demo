@@ -49,3 +49,52 @@ Use the link below to sign up:
 
 ### Step 3: Add the key to the app
 In the app:
+Paste the API key and select a voice.
+
+---
+
+## Recommended voices
+
+- Use default ElevenLabs voices to start
+- Voice cloning is optional and requires explicit consent
+- For demos, a single consistent voice works best
+
+---
+
+## Usage limits & pricing
+
+- Free tier includes limited characters/minutes
+- Paid plans unlock higher quality and longer usage
+- Pricing is handled directly by ElevenLabs
+
+---
+
+## Privacy & transparency
+
+- Voice text is sent to ElevenLabs for synthesis
+- No audio is stored by this app
+- API keys are stored securely on the device
+- You can disable ElevenLabs at any time
+
+---
+
+## Affiliate disclosure
+
+This project uses an **ElevenLabs affiliate link**.
+
+If you sign up using the link above:
+- You pay the same price
+- The project may receive a small commission
+- This helps cover development and infrastructure costs
+
+Thank you for supporting open development ❤️
+
+---
+
+## Summary
+
+✔ Best-in-class AI voices  
+✔ Optional but powerful  
+✔ Required for voice & phone features  
+✔ Easy setup  
+✔ Transparent affiliate support
