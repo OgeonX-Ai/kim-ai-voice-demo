@@ -1,96 +1,96 @@
-<!doctype html>
+<!DOCTYPE html>
+<html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="UTF-8" />
+  <title>Kim's AI Voice Demo</title>
+  <title>Kim Harjamäki · AI Voice & Cloud Architect</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeonX AI – Real-Time Voice AI</title>
-
-  <!-- IMPORTANT -->
-  <link rel="stylesheet" href="styles.css" />
+  <meta
+    name="description"
+    content="Interactive AI voice demo by Kim Harjamäki. Try the demo, connect on LinkedIn, and explore cloud & AI projects."
+  />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-  <!-- HERO -->
-  <header class="hero">
+<body style="font-family: sans-serif; max-width: 800px; margin: 60px auto;">
+  <!-- Hero -->
+  <section class="hero">
     <div class="container">
-      <h1>GeonX AI</h1>
-      <p class="subtitle">
-        Real-time AI voice agents for web & mobile
-      </p>
+      <h1>Hi, I'm Kim Harjamäki</h1>
+      <p class="subtitle">Azure Architect, DevOps Engineer & AI Voice Innovator</p>
 
+  <h1>AI Voice Demo · Powered by ElevenLabs</h1>
+  <p>This is my personal demo page where I show my real-time AI voice work.</p>
       <div class="buttons">
-        <a href="#demo" class="btn primary">Try the Demo</a>
-        <a href="#about" class="btn secondary">How it Works</a>
-        <a
-          href="https://try.elevenlabs.io/grs57m362vnn"
-          target="_blank"
-          rel="noopener"
-          class="btn accent"
-        >
-          Open Live Voice AI
-        </a>
+        <a class="btn primary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">Connect on LinkedIn</a>
+        <a class="btn secondary" href="#demo">Try the Voice Demo</a>
       </div>
-    </div>
-  </header>
 
-  <!-- DEMO -->
+  <h2>🔥 Try the ElevenLabs engine I use</h2>
+  <p>
+    Click here to test it:  
+    <a href="elevenlabs/index.html">https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs</a>
+  </p>
+      <p class="hero-note">
+        Built by Kim — showcasing real-time AI voice demos and cloud automation.
+      </p>
+    </div>
+  </section>
+
+  <h2>📱 My projects</h2>
+  <ul>
+    <li>Real-time AI voice mobile app (Android)</li>
+    <li>Web-based AI voice chat</li>
+    <li>Customer support AI agent experiments</li>
+  </ul>
+  <!-- Demo -->
   <section id="demo" class="demo-section">
     <div class="container">
-      <h2>Interactive Demo</h2>
+      <h2>Interactive AI Voice Demo</h2>
+      <p>Type your text and hear how it sounds using a modern AI voice engine.</p>
 
+  <h2>👋 About me</h2>
+  <p>
+    I'm Kim, Azure & DevOps Architect building modern AI-powered voice applications.
+    This page will soon include full demos, code examples, and integrations.
+  </p>
       <form id="demo-form">
-        <textarea
-          id="demo-text"
-          rows="5"
-          placeholder="Type what you want the AI to say…"
-        ></textarea>
-
-        <a
-          class="btn accent btn-large"
-          href="https://try.elevenlabs.io/grs57m362vnn"
-          target="_blank"
-          rel="noopener"
-        >
-          Launch Voice AI Demo
-        </a>
-
-        <p class="affiliate-note">
-          Powered by ElevenLabs.
-          <a
-            class="affiliate-link"
-            href="https://try.elevenlabs.io/grs57m362vnn"
-            target="_blank"
-            rel="noopener"
-          >
-            Open official demo
-          </a>
-        </p>
+        <textarea id="demo-text" placeholder="Type something..." rows="4"></textarea>
+        <button type="submit" class="btn primary btn-large">Generate Voice</button>
       </form>
-    </div>
-  </section>
 
-  <!-- ABOUT -->
-  <section id="about" class="about-section">
-    <div class="container">
-      <h2>What is GeonX AI?</h2>
-      <p>
-        A lightweight, real-time voice AI demo showing how modern speech models
-        can handle conversations across web, mobile, inbound and outbound calls.
-        Built as a practical showcase — not a slideshow.
+      <audio id="audio-player" controls></audio>
+
+      <p class="affiliate-note">
+        Want more voices? Try the engine I use:
+        <a class="affiliate-link" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs</a>
       </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- About You -->
+  <section class="about-section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I design and build scalable cloud solutions with Azure and DevOps,
+        and prototype AI voice applications that integrate real-time speech
+        technologies. I focus on delivering reliable automation and clear
+        technical solutions.
+      </p>
+      <a class="btn secondary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">More on LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      © <span id="year"></span> GeonX AI
+      <p>© 2025 Kim Harjamäki · Azure, DevOps & AI Voice</p>
     </div>
   </footer>
 
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
