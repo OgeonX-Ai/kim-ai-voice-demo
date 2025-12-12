@@ -1,136 +1,96 @@
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GeonX AI – Real-Time Voice AI</title>
 
-body {
-  font-family: "Inter", sans-serif;
-  background: #0a0a0f;
-  color: #eef2f7;
-  line-height: 1.6;
-}
+  <!-- IMPORTANT -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
 
-.container {
-  width: 100%;
-  max-width: 1024px;
-  margin: auto;
-  padding: 20px;
-}
+  <!-- HERO -->
+  <header class="hero">
+    <div class="container">
+      <h1>GeonX AI</h1>
+      <p class="subtitle">
+        Real-time AI voice agents for web & mobile
+      </p>
 
-/* Hero */
-.hero {
-  text-align: center;
-  padding: 80px 20px;
-  background: linear-gradient(135deg, #0f0f19, #1d1f2e);
-}
+      <div class="buttons">
+        <a href="#demo" class="btn primary">Try the Demo</a>
+        <a href="#about" class="btn secondary">How it Works</a>
+        <a
+          href="https://try.elevenlabs.io/grs57m362vnn"
+          target="_blank"
+          rel="noopener"
+          class="btn accent"
+        >
+          Open Live Voice AI
+        </a>
+      </div>
+    </div>
+  </header>
 
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 8px;
-  color: #ffffff;
-}
+  <!-- DEMO -->
+  <section id="demo" class="demo-section">
+    <div class="container">
+      <h2>Interactive Demo</h2>
 
-.subtitle {
-  font-size: 1.25rem;
-  color: #c1c5ce;
-  margin-bottom: 20px;
-}
+      <form id="demo-form">
+        <textarea
+          id="demo-text"
+          rows="5"
+          placeholder="Type what you want the AI to say…"
+        ></textarea>
 
-.buttons {
-  margin-top: 16px;
-}
+        <a
+          class="btn accent btn-large"
+          href="https://try.elevenlabs.io/grs57m362vnn"
+          target="_blank"
+          rel="noopener"
+        >
+          Launch Voice AI Demo
+        </a>
 
-.btn {
-  text-decoration: none;
-  padding: 12px 24px;
-  margin: 8px;
-  font-size: 1rem;
-  border-radius: 6px;
-  display: inline-block;
-  font-weight: 600;
-  transition: background 0.2s ease;
-}
+        <p class="affiliate-note">
+          Powered by ElevenLabs.
+          <a
+            class="affiliate-link"
+            href="https://try.elevenlabs.io/grs57m362vnn"
+            target="_blank"
+            rel="noopener"
+          >
+            Open official demo
+          </a>
+        </p>
+      </form>
+    </div>
+  </section>
 
-.btn.primary {
-  background: #4c7dff;
-  color: #fff;
-}
+  <!-- ABOUT -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>What is GeonX AI?</h2>
+      <p>
+        A lightweight, real-time voice AI demo showing how modern speech models
+        can handle conversations across web, mobile, inbound and outbound calls.
+        Built as a practical showcase — not a slideshow.
+      </p>
+    </div>
+  </section>
 
-.btn.primary:hover {
-  background: #3f69d1;
-}
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> GeonX AI
+    </div>
+  </footer>
 
-.btn.secondary {
-  background: #1c1e2b;
-  border: 2px solid #4c7dff;
-  color: #4c7dff;
-}
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 
-.btn.secondary:hover {
-  background: #32354a;
-}
-
-/* Accent call-to-action button */
-.btn.accent {
-  background: #ff6e40;
-  color: #fff;
-  border: 1px solid #ff6e40;
-}
-
-.btn.accent:hover {
-  background: #e85d32;
-}
-
-/* Sections */
-.demo-section, .about-section {
-  padding: 60px 20px;
-  text-align: center;
-}
-
-.demo-section h2,
-.about-section h2 {
-  margin-bottom: 12px;
-  font-size: 2rem;
-  color: #ffffff;
-}
-
-#demo-form {
-  margin: auto;
-  max-width: 640px;
-}
-
-#demo-text {
-  width: 100%;
-  padding: 14px;
-  border-radius: 8px;
-  border: 1px solid #3b3f52;
-  margin-bottom: 12px;
-  background: #11141f;
-  color: #eef2f7;
-}
-
-.btn-large {
-  width: 100%;
-}
-
-.affiliate-note {
-  margin-top: 14px;
-  font-size: 0.95rem;
-  color: #c1c5ce;
-}
-
-.affiliate-link {
-  color: #ff6e40;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-/* Footer */
-.footer {
-  padding: 18px;
-  background: #0d0d19;
-  text-align: center;
-  font-size: 0.85rem;
-  color: #8891a1;
-}
+</body>
+</html>
