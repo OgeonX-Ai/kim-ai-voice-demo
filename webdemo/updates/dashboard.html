@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dev Log Dashboard</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+      --accent: #38bdf8;
+      --border: #1f2937;
+    }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      padding: 24px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.12), rgba(56, 189, 248, 0));
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      letter-spacing: -0.02em;
+    }
+    p.subtitle {
+      margin: 0;
+      color: var(--muted);
+      max-width: 720px;
+    }
+    main {
+      padding: 24px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+    .metric {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 4px 0;
+    }
+    .label {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .bar-row {
+      display: flex;
+      align-items: center;
+      margin: 8px 0;
+      gap: 8px;
+    }
+    .bar-label {
+      width: 120px;
+      font-weight: 600;
+    }
+    .bar {
+      flex: 1;
+      height: 8px;
+      background: #1f2937;
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #38bdf8, #6366f1);
+    }
+    ul.recent {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .recent li {
+      padding: 12px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+    .recent .title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .recent .meta {
+      color: var(--muted);
+      font-size: 14px;
+    }
+    a {
+      color: var(--accent);
+    }
+    footer {
+      padding: 16px 24px 32px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>OgeonX-Ai · Dev Log Dashboard</h1>
+    <p class="subtitle">Auto-generated stats from every merged PR across all public OgeonX-Ai repositories. Updated every 6 hours.</p>
+  </header>
+  <main>
+    <div class="card">
+      <div class="label">Total PRs</div>
+      <div id="total-prs" class="metric">–</div>
+      <div class="label">Net LOC: <span id="net-loc">–</span></div>
+    </div>
+    <div class="card">
+      <div class="label">Total additions</div>
+      <div id="total-add" class="metric">–</div>
+      <div class="label">Total deletions</div>
+      <div id="total-del" class="metric">–</div>
+    </div>
+    <div class="card">
+      <h3>Per-repo volume</h3>
+      <div id="per-repo"></div>
+    </div>
+    <div class="card" style="grid-column: 1 / -1;">
+      <h3>Recent PRs</h3>
+      <ul id="recent-list" class="recent"></ul>
+    </div>
+  </main>
+  <footer>
+    Data source: GitHub REST API v3 · schedule every 6 hours · powered by GitHub Actions.
+  </footer>
+  <script>
+    async function loadStats() {
+      const res = await fetch('stats.json', { cache: 'no-store' });
+      if (!res.ok) throw new Error('Failed to load stats');
+      return res.json();
+    }
+
+    function formatNumber(n) {
+      return n.toLocaleString();
+    }
+
+    function renderPerRepo(container, perRepo) {
+      container.innerHTML = '';
+      const entries = Object.entries(perRepo).sort((a, b) => b[1].prs - a[1].prs);
+      const maxAdd = Math.max(...entries.map(([, data]) => data.additions), 1);
+      entries.forEach(([repo, data]) => {
+        const row = document.createElement('div');
+        row.className = 'bar-row';
+        const label = document.createElement('div');
+        label.className = 'bar-label';
+        label.textContent = repo;
+        const bar = document.createElement('div');
+        bar.className = 'bar';
+        const fill = document.createElement('div');
+        fill.className = 'bar-fill';
+        fill.style.width = `${Math.max(5, (data.additions / maxAdd) * 100)}%`;
+        bar.appendChild(fill);
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.textContent = `${data.prs} PRs · +${data.additions.toLocaleString()} / -${data.deletions.toLocaleString()}`;
+        row.append(label, bar, meta);
+        container.appendChild(row);
+      });
+    }
+
+    function renderRecent(listEl, recent) {
+      listEl.innerHTML = '';
+      recent.forEach((item) => {
+        const li = document.createElement('li');
+        const title = document.createElement('div');
+        title.className = 'title';
+        const link = document.createElement('a');
+        link.href = item.fileLink;
+        link.textContent = `${item.repo} · #${item.number} · ${item.title}`;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        title.appendChild(link);
+        const meta = document.createElement('div');
+        meta.className = 'meta';
+        meta.textContent = `${item.merged_at} · +${item.additions} / -${item.deletions} · ${item.changed_files} files`;
+        li.append(title, meta);
+        listEl.appendChild(li);
+      });
+    }
+
+    loadStats()
+      .then((stats) => {
+        document.getElementById('total-prs').textContent = formatNumber(stats.totalPRs);
+        document.getElementById('total-add').textContent = formatNumber(stats.totalAdditions);
+        document.getElementById('total-del').textContent = formatNumber(stats.totalDeletions);
+        document.getElementById('net-loc').textContent = `${stats.netLoc >= 0 ? '+' : ''}${formatNumber(stats.netLoc)}`;
+        renderPerRepo(document.getElementById('per-repo'), stats.perRepo || {});
+        renderRecent(document.getElementById('recent-list'), stats.recent || []);
+      })
+      .catch((err) => {
+        document.getElementById('total-prs').textContent = 'Error';
+        console.error(err);
+      });
+  </script>
+</body>
+</html>

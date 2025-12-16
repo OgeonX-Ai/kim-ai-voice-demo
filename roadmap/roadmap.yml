@@ -1,0 +1,42 @@
+milestone: "Dev Log v1"
+issues:
+  - key: "devlog-dashboard-polish"
+    title: "Polish Dev Log Dashboard (product-grade)"
+    repo: "kim-ai-voice-demo"
+    labels: ["roadmap", "frontend", "devlog"]
+    priority: "P1"
+    body: |
+      Goal:
+      - Make dashboard look product-grade and easy to scan.
+
+      Acceptance criteria:
+      - KPI cards, charts, filters, responsive
+      - Reads stats.json + posts.json
+      - No external JS frameworks
+
+      Tasks:
+      - [ ] Add posts.json generation
+      - [ ] Improve CSS + layout
+      - [ ] Add repo filter + search
+      - [ ] Add charts
+
+  - key: "devlog-org-aggregation"
+    title: "Aggregate merged PRs from all OgeonX-Ai repos"
+    repo: "kim-ai-voice-demo"
+    labels: ["roadmap", "automation", "devlog"]
+    priority: "P0"
+    body: |
+      Goal:
+      - Dev Log auto-syncs merged PRs across all org repos.
+      - No manual intervention for new repositories.
+      - Caches processed PRs to avoid duplicates.
+
+      Acceptance criteria:
+      - Scheduled sync populates markdown posts and stats.
+      - Handles pagination and rate limits gracefully.
+      - Skips private and archived repositories.
+
+      Tasks:
+      - [ ] Confirm cache behavior on re-runs
+      - [ ] Add monitoring for sync failures
+      - [ ] Document operational playbook
