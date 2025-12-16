@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Setup local backend · Whisper demo</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="standalone-page">
+  <section class="hero compact">
+    <div class="container">
+      <p class="eyebrow">Local setup</p>
+      <h1>Start the enterprise-ai-gateway locally</h1>
+      <p class="subtitle">Run the backend on localhost so the Call Whisper demo can reach /healthz and /v1/audio/transcribe-file.</p>
+    </div>
+  </section>
+
+  <section class="guide">
+    <div class="container">
+      <h2>Clone & install</h2>
+      <div class="code-block">
+        git clone https://github.com/OgeonX-Ai/kim-ai-voice-demo.git
+        <br />cd kim-ai-voice-demo/enterprise-ai-gateway
+        <br />python -m venv .venv && source .venv/bin/activate
+        <br />pip install -r requirements.txt  # or npm install if using the Node stub
+      </div>
+
+      <h2>Run</h2>
+      <div class="code-block">
+        uvicorn server:app --host 0.0.0.0 --port 8000
+      </div>
+      <p class="note">Prefer Node? Launch the Express stub with <code>npm install</code> then <code>node server.js</code>.</p>
+
+      <h2>Verify</h2>
+      <ul class="step-list compact">
+        <li><strong>/healthz</strong> returns OK</li>
+        <li><strong>/docs</strong> (if FastAPI) loads</li>
+        <li><strong>/v1/audio/transcribe-file</strong> accepts multipart uploads</li>
+      </ul>
+
+      <h2>Common issues</h2>
+      <ul class="step-list compact">
+        <li>Wrong venv: ensure you activated <code>.venv</code></li>
+        <li>Port mismatch: page defaults to 8000</li>
+        <li>CORS blocked: enable CORS middleware in the gateway</li>
+        <li>Missing endpoint: add a Whisper/Azure handler at <code>/v1/audio/transcribe-file</code></li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>
