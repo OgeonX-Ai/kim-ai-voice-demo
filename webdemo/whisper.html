@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Whisper Playground</title>
+  <style>
+    :root {
+      --bg: #0b0c10;
+      --panel: #11131b;
+      --accent: #6a8dff;
+      --muted: #9aa0b5;
+      --text: #e7e9f1;
+      --border: #1f2332;
+      --danger: #ff6b6b;
+      --success: #6fffb0;
+      --warning: #f7c948;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: radial-gradient(circle at 20% 20%, rgba(106, 141, 255, 0.07), transparent 30%),
+        radial-gradient(circle at 80% 0%, rgba(111, 255, 176, 0.04), transparent 25%),
+        var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    .banner {
+      background: linear-gradient(90deg, rgba(106, 141, 255, 0.15), rgba(111, 255, 176, 0.12));
+      border: 1px solid rgba(106, 141, 255, 0.25);
+      padding: 12px 14px;
+      border-radius: 12px;
+      color: #dbe2ff;
+      font-size: 0.95rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .card h2 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    input[type='text'],
+    select,
+    input[type='number'] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: #0f1118;
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    input[type='range'] {
+      flex: 1;
+      accent-color: var(--accent);
+    }
+
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+    }
+
+    .controls-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    button {
+      border: none;
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background 0.12s ease;
+    }
+
+    button:active {
+      transform: translateY(1px);
+    }
+
+    .primary {
+      background: linear-gradient(120deg, #4f7cff, #6a8dff);
+      color: white;
+      box-shadow: 0 12px 30px rgba(106, 141, 255, 0.35);
+    }
+
+    .danger {
+      background: linear-gradient(120deg, #ff6b6b, #ff8f8f);
+      color: #2a0b0b;
+      box-shadow: 0 12px 30px rgba(255, 107, 107, 0.3);
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #141826;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .logs,
+    .output-box {
+      background: #0f1118;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px;
+      min-height: 180px;
+      font-family: 'JetBrains Mono', 'SFMono-Regular', Consolas, monospace;
+      font-size: 0.95rem;
+      color: #d8ddf0;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      align-items: center;
+    }
+
+    .status {
+      font-weight: 600;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    .status.live {
+      color: var(--warning);
+    }
+
+    .status.idle {
+      color: var(--muted);
+    }
+
+    .status.success {
+      color: var(--success);
+    }
+
+    .status.error {
+      color: var(--danger);
+    }
+
+    .muted {
+      color: var(--muted);
+    }
+
+    .output-text {
+      font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    .row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .row .inline {
+      flex: 1;
+      min-width: 160px;
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="pill">🎙 Whisper Playground</div>
+    <h1>Record, transcribe, and inspect timings</h1>
+    <p class="subtitle">
+      This demo calls your local backend at http://127.0.0.1:8000. Start enterprise-ai-gateway first.
+    </p>
+  </header>
+
+  <div class="banner">
+    Use MediaRecorder to capture microphone audio, then upload as a single multipart/form-data request to
+    <code>/v1/audio/transcribe-file</code>.
+  </div>
+
+  <div class="grid" style="margin-top: 18px;">
+    <div class="card">
+      <div class="row">
+        <div class="inline">
+          <label for="backend-url">Backend URL</label>
+          <input type="text" id="backend-url" value="http://127.0.0.1:8000" />
+        </div>
+        <div class="inline">
+          <label for="model">Model</label>
+          <select id="model">
+            <option value="tiny">tiny</option>
+            <option value="small">small</option>
+            <option value="medium">medium</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="inline">
+          <label for="language">Language</label>
+          <select id="language">
+            <option value="auto">auto</option>
+            <option value="en">English (en)</option>
+            <option value="fi">Finnish (fi)</option>
+          </select>
+        </div>
+        <div class="inline">
+          <label class="slider-row" for="beam">
+            Beam size <span id="beam-value">3</span>
+          </label>
+          <input type="range" id="beam" min="1" max="5" step="1" value="3" />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="inline">
+          <label class="slider-row" for="chunk-seconds">
+            Chunk seconds <span id="chunk-value">3</span>
+          </label>
+          <input type="range" id="chunk-seconds" min="1" max="6" step="1" value="3" />
+        </div>
+        <div class="inline toggle-row" style="margin-top: 8px;">
+          <input type="checkbox" id="vad-toggle" />
+          <label for="vad-toggle" style="margin: 0;">Enable VAD</label>
+        </div>
+      </div>
+
+      <div class="controls-row">
+        <button id="start-btn" class="primary">Start recording</button>
+        <button id="stop-btn" class="danger">Stop &amp; send</button>
+        <p id="live-status" class="status idle">Idle</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Logs</h2>
+      <div class="logs" id="logs">Waiting to start…</div>
+    </div>
+
+    <div class="card">
+      <h2>Output</h2>
+      <div class="output-box" id="output">Transcription will appear here.</div>
+      <div class="meta" id="metrics"></div>
+    </div>
+  </div>
+
+  <script>
+    const startBtn = document.getElementById('start-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const logsEl = document.getElementById('logs');
+    const outputEl = document.getElementById('output');
+    const metricsEl = document.getElementById('metrics');
+    const beamInput = document.getElementById('beam');
+    const beamValue = document.getElementById('beam-value');
+    const chunkInput = document.getElementById('chunk-seconds');
+    const chunkValue = document.getElementById('chunk-value');
+    const liveStatus = document.getElementById('live-status');
+
+    let mediaRecorder;
+    let chunks = [];
+    let startTime = 0;
+
+    const updateStatus = (text, type = 'idle') => {
+      liveStatus.textContent = text;
+      liveStatus.className = `status ${type}`;
+    };
+
+    const addLog = (msg) => {
+      const timestamp = new Date().toLocaleTimeString();
+      logsEl.textContent += `\n[${timestamp}] ${msg}`;
+      logsEl.scrollTop = logsEl.scrollHeight;
+    };
+
+    const resetLogs = () => {
+      logsEl.textContent = '[ready] Awaiting microphone permission…';
+    };
+
+    beamInput.addEventListener('input', () => {
+      beamValue.textContent = beamInput.value;
+    });
+
+    chunkInput.addEventListener('input', () => {
+      chunkValue.textContent = chunkInput.value;
+    });
+
+    const stopRecording = () => {
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+      }
+    };
+
+    startBtn.addEventListener('click', async () => {
+      resetLogs();
+      chunks = [];
+      metricsEl.innerHTML = '';
+      outputEl.textContent = 'Listening…';
+      updateStatus('Recording…', 'live');
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.onstart = () => {
+          startTime = performance.now();
+          addLog('Recording started');
+        };
+
+        mediaRecorder.ondataavailable = (e) => {
+          if (e.data && e.data.size > 0) {
+            chunks.push(e.data);
+          }
+        };
+
+        mediaRecorder.onstop = () => {
+          const totalMs = performance.now() - startTime;
+          addLog(`Recording stopped. Collected ${chunks.length} chunk(s) in ${totalMs.toFixed(0)} ms.`);
+          const blob = new Blob(chunks, { type: 'audio/webm' });
+          sendToBackend(blob);
+          stream.getTracks().forEach((t) => t.stop());
+        };
+
+        mediaRecorder.start();
+      } catch (err) {
+        console.error(err);
+        addLog('Microphone permission denied or unavailable.');
+        updateStatus('Permission error', 'error');
+      }
+    });
+
+    stopBtn.addEventListener('click', () => {
+      if (!mediaRecorder || mediaRecorder.state !== 'recording') {
+        addLog('Nothing to stop.');
+        return;
+      }
+      addLog('Stopping recording…');
+      stopRecording();
+    });
+
+    async function sendToBackend(blob) {
+      const backendUrl = document.getElementById('backend-url').value.trim().replace(/\/$/, '');
+      const model = document.getElementById('model').value;
+      const language = document.getElementById('language').value;
+      const beam_size = Number(document.getElementById('beam').value);
+      const chunk_seconds = Number(document.getElementById('chunk-seconds').value);
+      const enable_vad = document.getElementById('vad-toggle').checked;
+
+      if (!blob || !blob.size) {
+        addLog('No audio captured to send.');
+        updateStatus('No audio', 'error');
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append('file', new File([blob], 'audio.wav', { type: blob.type || 'audio/wav' }));
+      formData.append('settings', JSON.stringify({ model, language, beam_size, enable_vad, chunk_seconds }));
+
+      const url = `${backendUrl}/v1/audio/transcribe-file`;
+      addLog(`Uploading ${Math.round(blob.size / 1024)} KB to ${url} …`);
+      updateStatus('Thinking…', 'idle');
+      outputEl.textContent = 'Thinking…';
+
+      try {
+        const uploadStart = performance.now();
+        const res = await fetch(url, { method: 'POST', body: formData });
+        const elapsed = performance.now() - uploadStart;
+
+        if (!res.ok) {
+          const msg = `Upload failed (${res.status})`;
+          addLog(msg);
+          updateStatus('Error', 'error');
+          outputEl.textContent = msg;
+          return;
+        }
+
+        const data = await res.json();
+        addLog(`Received response in ${elapsed.toFixed(0)} ms.`);
+        renderOutput(data);
+        updateStatus('Success', 'success');
+      } catch (err) {
+        console.error(err);
+        addLog('Network or backend error.');
+        outputEl.textContent = 'Network or backend error.';
+        updateStatus('Error', 'error');
+      }
+    }
+
+    function renderOutput(data) {
+      const text = data?.text || data?.transcript || 'No transcription text returned.';
+      outputEl.textContent = text;
+
+      const parts = [];
+      if (data?.timings && typeof data.timings === 'object') {
+        Object.entries(data.timings).forEach(([key, value]) => {
+          parts.push(`${key}: ${value}`);
+        });
+      }
+      if (data?.duration_ms) {
+        parts.push(`duration_ms: ${data.duration_ms}`);
+      }
+      if (data?.processing_ms) {
+        parts.push(`processing_ms: ${data.processing_ms}`);
+      }
+
+      metricsEl.innerHTML = parts.length
+        ? parts.map((p) => `<span class="pill">${p}</span>`).join('')
+        : '<span class="muted">No timing metrics returned.</span>';
+    }
+
+    resetLogs();
+  </script>
+</body>
+</html>

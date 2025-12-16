@@ -42,6 +42,7 @@ A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-t
 - Easy backend integration (Node/Python)
 - Masked affiliate redirect
 - Developer-friendly structure and demo flow
+- Whisper Playground (mic capture → multipart upload to `/v1/audio/transcribe-file`)
 
 ---
 
@@ -56,6 +57,37 @@ Live page with the full guide: https://ogeonx-ai.github.io/kim-ai-voice-demo/
 5) **Evaluation criteria** — Grounding to CV, answer relevance, clarity of technical explanations, accurate seniority, user satisfaction.
 6) **Invite link (10-minute minimum)** — In your agent: Security / Share → create a time-limited invite link (minimum 10 minutes) and share it via DM/email/featured link.
 7) **Share** — Post the project with your invite link or GitHub Pages redirect.
+
+---
+
+## 🧠 Partial automation backend
+
+`enterprise-ai-gateway` adds an optional API to create an ElevenLabs agent and return a time-limited invite link.
+
+- **Endpoint:** `POST /api/elevenlabs/agent-auto`
+  - Body: `{ "api_key": "<your_key>", "agent_name": "My CV Agent" }`
+  - Validates the key, calls `convai/agents/create`, then fetches the agent share link.
+  - Returns: `{ agent_id, share_link }`
+- **Security:** API keys are only used in-memory per request. They are **not** stored. If you need persistent storage, use a vault such as Azure Key Vault.
+- **Whisper test:** `POST /api/whisper-test` accepts an audio file and returns a stub transcript (swap in your STT provider).
+
+## 🎙 Whisper Playground
+
+- Page: [`/webdemo/whisper.html`](webdemo/whisper.html)
+- What it does: records microphone audio via MediaRecorder, then uploads a single `multipart/form-data` request with the blob as `audio.wav` plus JSON `settings`.
+- Default backend target: `http://127.0.0.1:8000/v1/audio/transcribe-file` (edit the input to match your host).
+- Controls include model (tiny/small/medium), language (fi/en/auto), beam size, VAD toggle, and chunk seconds slider.
+- Panels show logs, live status, transcription text, and any timing metrics returned by the backend.
+
+### Run locally
+
+```bash
+cd enterprise-ai-gateway
+npm install
+npm start
+```
+
+The server listens on port `3001` by default. Point the frontend calls at your running backend (e.g., proxy `/api` locally).
 
 ---
 
@@ -77,6 +109,13 @@ kim-ai-voice-demo/
 │     ├── glossary.md
 │     └── tone.md
 │
+│── webdemo/
+│     ├── index.html      # Auxiliary voice companion demo
+│     └── whisper.html    # Whisper Playground (mic capture + upload)
+│
+├── enterprise-ai-gateway/  # Optional backend for automation + Whisper test
+│     ├── package.json
+│     └── server.js
 └── assets/            # (optional) images, screenshots
 ~~~
 

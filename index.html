@@ -49,6 +49,60 @@
     </div>
   </section>
 
+  <section class="automation">
+    <div class="container">
+      <h2>Automate your agent creation</h2>
+      <p class="subtitle">
+        Paste your ElevenLabs API key and desired agent name to auto-create an agent and fetch the invite link.
+      </p>
+      <div class="form-grid">
+        <form id="agent-auto-form" class="form-card">
+          <label for="api-key">ElevenLabs API key</label>
+          <input id="api-key" name="api_key" type="password" placeholder="Paste your key" required />
+          <label for="agent-name">Agent name</label>
+          <input id="agent-name" name="agent_name" type="text" placeholder="Talk to My CV" required />
+          <p class="note">Your ElevenLabs API key will not be stored. For persistent vault storage, consider Azure Key Vault.</p>
+          <button type="submit" class="btn primary btn-large">Create agent + get share link</button>
+          <p id="agent-auto-status" class="status"></p>
+          <div id="agent-auto-result" class="result-card" hidden></div>
+        </form>
+        <div class="form-card">
+          <h3>Prefer manual setup?</h3>
+          <ol class="step-list compact">
+            <li>Open the ElevenLabs dashboard.</li>
+            <li>Upload your KB markdown files and configure your agent.</li>
+            <li>Create a time-limited invite link (minimum 10 minutes).</li>
+          </ol>
+          <a
+            class="btn secondary"
+            href="https://start.elevenlabs.io/cp/for-developers"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Go to ElevenLabs dashboard
+          </a>
+          <p class="note">Manual path keeps your key client-side. You can still paste the link here to share.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="whisper">
+    <div class="container">
+      <h2>Whisper test (optional)</h2>
+      <p class="subtitle">Send an audio file to the backend /whisper-test endpoint and view the stubbed transcription.</p>
+      <form id="whisper-form" class="form-inline" enctype="multipart/form-data">
+        <input type="file" id="whisper-audio" name="audio" accept="audio/*" />
+        <button type="submit" class="btn primary">Send to Whisper test</button>
+      </form>
+      <p id="whisper-status" class="status"></p>
+      <p class="note">
+        Prefer an interactive recorder? Try the <a href="webdemo/whisper.html" target="_blank" rel="noopener noreferrer">Whisper Playground</a>
+        to capture mic audio and send a single multipart request to your backend.
+      </p>
+    </div>
+  </section>
+
   <section class="projects">
     <div class="container">
       <h2>📱 Recent builds</h2>
