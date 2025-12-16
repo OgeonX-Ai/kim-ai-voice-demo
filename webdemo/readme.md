@@ -126,7 +126,7 @@ This project uses ElevenLabs for high-quality voice output.
 
 Quick start link used in demos:
 
-👉 https://try.elevenlabs.io/grs57m362vnn
+👉 https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs
 
 This is an affiliate link.  
 Using it supports the development of this open-source project at no extra cost.

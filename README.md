@@ -1,7 +1,6 @@
 # 🔊 Real-Time AI Voice Demo (Web + Mobile)
 
-A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-to-text, text-to-speech, and a lightweight frontend hosted on GitHub Pages.  
-This project also acts as a portfolio showcase for Azure, DevOps, and AI integration work.
+A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-to-text, text-to-speech, and a lightweight frontend hosted on GitHub Pages. It also shows how to mask affiliate URLs with a GitHub Pages redirect.
 
 ---
 
@@ -9,6 +8,8 @@ This project also acts as a portfolio showcase for Azure, DevOps, and AI integra
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-blue?style=for-the-badge&logo=github)](https://ogeonx-ai.github.io/kim-ai-voice-demo/)
 [![Try the Voice Engine](https://img.shields.io/badge/Try_ElevenLabs🔥-Demo-orange?style=for-the-badge&logo=ai)](https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs)
+
+*Disclosure: The ElevenLabs link redirects via my tracking page (affiliate). No extra cost.*
 
 ---
 
@@ -44,6 +45,19 @@ This project also acts as a portfolio showcase for Azure, DevOps, and AI integra
 
 ---
 
+## 🏁 Quick start: build your interactive AI CV
+
+1) **Create an ElevenLabs Agent** — Agents → New agent, pick voice + language.  
+2) **Load your Knowledge Base** — Upload Markdown files: `cv.md`, `projects.md`, `skills.md`, `glossary.md` from [`/kb-templates/`](kb-templates/).  
+3) **Set system rules** — Ground answers in the KB only, avoid invented experience, switch Finnish/English based on user input.  
+4) **Add evaluation criteria** — Grounding to CV, relevance, clarity of technical explanations, accurate seniority, user satisfaction.  
+5) **Secure access** — Enable auth, use invite links with expiry + single use, set daily call limits.  
+6) **Share** — Post on LinkedIn with your GitHub Pages redirect link.
+
+Live page with the full guide: https://ogeonx-ai.github.io/kim-ai-voice-demo/
+
+---
+
 ## 📂 Project Structure
 
 ~~~text
@@ -54,6 +68,12 @@ kim-ai-voice-demo/
 │
 │── elevenlabs/
 │     └── index.html   # Affiliate redirect
+│
+│── kb-templates/      # Markdown templates for your agent KB
+│     ├── cv.md
+│     ├── projects.md
+│     ├── skills.md
+│     └── glossary.md
 │
 └── assets/            # (optional) images, screenshots
 ~~~
@@ -93,10 +113,12 @@ If you're exploring Azure, DevOps, hybrid cloud, or AI voice technology, feel fr
 🔗 **LinkedIn:**  
 https://linkedin.com/in/kimharjamaki  
 
-🔗 **Live Demo:**  
-https://ogeonx-ai.github.io/kim-ai-voice-demo/  
+🔗 **Live Demo:**
+https://ogeonx-ai.github.io/kim-ai-voice-demo/
 
-🔥 **Try the same voice engine I use:**  
-https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs  
+🔥 **Try the same voice engine I use:**
+https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs
+
+*Disclosure: The ElevenLabs link redirects via my tracking page (affiliate). No extra cost.*
 
 ---

@@ -10,7 +10,7 @@ ElevenLabs provides some of the best natural-sounding AI voices available today.
 
 The easiest way to get started is via the **demo link** used in the web and app demos:
 
-👉 https://try.elevenlabs.io/grs57m362vnn
+👉 https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs
 
 This link opens ElevenLabs directly and lets you create an account in minutes.
 
@@ -35,7 +35,7 @@ The app works **without ElevenLabs**, but voice features require it.
 ### Step 1: Create an ElevenLabs account
 Use the link below to sign up:
 
-👉 https://try.elevenlabs.io/grs57m362vnn
+👉 https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs
 
 ---
 
