@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azure upgrade plan · Whisper demo</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="standalone-page">
+  <section class="hero compact">
+    <div class="container">
+      <p class="eyebrow">Upgrade path</p>
+      <h1>Swap Whisper for Azure Speech</h1>
+      <p class="subtitle">Keep the same browser UI and gateway, but point /v1/audio/transcribe-file to Azure for faster, scalable STT.</p>
+    </div>
+  </section>
+
+  <section class="guide">
+    <div class="container">
+      <h2>Architecture</h2>
+      <p class="subtitle">Browser → enterprise-ai-gateway → Azure Speech → text response. API keys live in Key Vault, never in the browser.</p>
+      <ul class="step-list compact">
+        <li>Use the same POST <code>/v1/audio/transcribe-file</code> endpoint</li>
+        <li>Configure Azure Speech credentials server-side (Key Vault recommended)</li>
+        <li>Return text + latency metrics for the UI cards</li>
+      </ul>
+
+      <h2>Setup steps</h2>
+      <ol class="step-list">
+        <li><strong>Provision Azure Speech</strong> — create resource and grab the endpoint/key.</li>
+        <li><strong>Store secrets</strong> — add the key to Azure Key Vault and wire the gateway to fetch it at startup.</li>
+        <li><strong>Update gateway route</strong> — forward uploaded audio to Azure Speech, keep the response shape for the UI.</li>
+        <li><strong>Test locally</strong> — hit <code>/healthz</code> and <code>/v1/audio/transcribe-file</code> from the Whisper Call section.</li>
+        <li><strong>Deploy</strong> — run the gateway where your users are; the UI stays on GitHub Pages.</li>
+      </ol>
+
+      <h2>Why Azure?</h2>
+      <ul class="step-list compact">
+        <li>Lower latency for Finnish and English</li>
+        <li>Scales horizontally; no need to ship GPU boxes</li>
+        <li>Enterprise security: secrets in Key Vault, auth controls in the gateway</li>
+      </ul>
+    </div>
+  </section>
+</body>
+</html>

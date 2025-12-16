@@ -33,6 +33,127 @@
     </div>
   </section>
 
+  <section class="call-whisper" id="call-whisper">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Live speech-to-text</p>
+          <h2>Call Whisper (Local STT demo)</h2>
+          <p class="subtitle">Hands-free mic capture that streams chunks to your local Whisper backend. Designed to feel like a phone call.</p>
+        </div>
+        <div class="backend-banner" id="backend-banner" hidden>
+          <p>Local backend not running. <a href="webdemo/setup-local-backend.html" target="_blank" rel="noopener noreferrer">See setup guide</a>.</p>
+        </div>
+      </div>
+
+      <div class="call-grid">
+        <div class="info-card">
+          <div class="info-title">Call Whisper (Local demo)</div>
+          <ul class="info-bullets">
+            <li>Speech-to-text. You talk. It writes.</li>
+            <li>Runs locally on my old Lenovo T480 (CPU). Expect some lag 😅</li>
+            <li>Mic → Browser → enterprise-ai-gateway (localhost) → Whisper → Text</li>
+            <li>Azure version would be much faster and scalable.</li>
+            <li>Same UI. Same gateway. Just a better engine.</li>
+          </ul>
+
+          <details class="accordion">
+            <summary>Upgrade to Azure (next step)</summary>
+            <p>
+              Swap local Whisper for Azure Speech, keep the same <code>/v1/audio/transcribe-file</code> endpoint, and store a single API key in Key Vault.
+            </p>
+            <ul class="info-bullets">
+              <li>Better Finnish accuracy + lower latency</li>
+              <li>Scales for teams</li>
+              <li>Same browser UI and gateway</li>
+            </ul>
+            <a class="btn ghost" href="webdemo/azure-plan.html" target="_blank" rel="noopener noreferrer">See Azure plan</a>
+          </details>
+
+          <details class="accordion">
+            <summary>Advanced settings</summary>
+            <div class="settings-grid">
+              <label>Backend URL
+                <input id="backend-url" type="text" value="http://127.0.0.1:8000" />
+              </label>
+              <label>Model
+                <select id="whisper-model">
+                  <option value="tiny">tiny</option>
+                  <option value="small">small</option>
+                  <option value="medium">medium</option>
+                </select>
+              </label>
+              <label>Language
+                <select id="whisper-language">
+                  <option value="auto">auto</option>
+                  <option value="en">en</option>
+                  <option value="fi">fi</option>
+                </select>
+              </label>
+              <label>Beam width
+                <input id="beam-width" type="range" min="1" max="5" value="3" />
+              </label>
+              <label>Chunk seconds
+                <input id="chunk-seconds" type="range" min="1" max="6" value="3" />
+              </label>
+              <label class="toggle">Voice activity detection
+                <input id="vad-toggle" type="checkbox" />
+                <span class="toggle-indicator"></span>
+              </label>
+            </div>
+          </details>
+        </div>
+
+        <div class="call-card">
+          <div class="status-row">
+            <span class="status-pill" id="call-status">idle</span>
+            <span class="status-pill secondary" id="backend-status">checking...</span>
+          </div>
+          <p class="subtitle small">This demo calls your local backend at <span id="backend-url-label">http://127.0.0.1:8000</span>. Start enterprise-ai-gateway first.</p>
+          <div class="call-actions">
+            <button class="btn primary" id="call-btn">Call</button>
+            <button class="btn secondary" id="end-call-btn" disabled>End call</button>
+          </div>
+          <p id="call-hint" class="note">Press Call to start continuous recording. We will not auto-start your mic.</p>
+
+          <div class="log-panel">
+            <div class="panel-header">
+              <h3>Logs</h3>
+              <button class="btn ghost small" id="clear-logs">Clear</button>
+            </div>
+            <div id="call-logs" class="log-list"></div>
+          </div>
+
+          <div class="output-panel">
+            <div class="panel-header">
+              <h3>Transcript</h3>
+              <span class="pill" id="transcript-state">waiting</span>
+            </div>
+            <div id="call-transcript" class="transcript"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="runtime-grid">
+        <div class="runtime-card">
+          <p class="eyebrow">Runtime</p>
+          <h3 id="runtime-provider">Provider: -</h3>
+          <p id="runtime-model">Model: -</p>
+          <p id="runtime-hardware">Hardware: -</p>
+          <p id="runtime-url">Backend: http://127.0.0.1:8000</p>
+          <p id="runtime-status" class="note">Status: Checking...</p>
+        </div>
+        <div class="runtime-card">
+          <p class="eyebrow">Performance</p>
+          <p id="runtime-requests">Total requests: -</p>
+          <p id="runtime-p50">p50 latency: -</p>
+          <p id="runtime-p95">p95 latency: -</p>
+          <p id="runtime-error">Last error: -</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="demo" class="demo-section">
     <div class="container">
       <h2>Interactive AI Voice Demo</h2>

@@ -95,10 +95,256 @@ body {
   margin-top: 6px;
 }
 
+.hero.compact {
+  padding: 48px 20px;
+}
+
+.standalone-page .guide {
+  text-align: left;
+}
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.backend-banner {
+  background: rgba(255, 109, 109, 0.12);
+  border: 1px solid rgba(255, 109, 109, 0.6);
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: #ffcfcf;
+}
+
+.backend-banner a {
+  color: #ffd2a8;
+  font-weight: 700;
+}
+
 /* Sections */
 .demo-section, .about-section, .projects, .guide, .templates, .redirect-guide, .share-link, .agent-setup, .human {
   padding: 60px 20px;
   text-align: center;
+}
+
+.call-whisper {
+  padding: 60px 20px;
+  background: radial-gradient(circle at 20% 20%, rgba(109, 168, 255, 0.14), transparent 40%), #0b0d14;
+}
+
+.call-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.info-card, .call-card {
+  background: #0f1220;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+}
+
+.info-title {
+  font-weight: 800;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.info-bullets {
+  list-style: disc;
+  padding-left: 18px;
+  color: #c7cce0;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.accordion {
+  background: #0c0f1b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+}
+
+.accordion summary {
+  cursor: pointer;
+  font-weight: 700;
+  color: #e6ebff;
+}
+
+.settings-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+}
+
+.settings-grid label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-weight: 700;
+  color: #d6dcf5;
+}
+
+.settings-grid input,
+.settings-grid select {
+  background: #111426;
+  border: 1px solid #2f3446;
+  border-radius: 8px;
+  color: #eef2f7;
+  padding: 10px;
+}
+
+.toggle {
+  position: relative;
+}
+
+.toggle-indicator {
+  width: 34px;
+  height: 18px;
+  border-radius: 12px;
+  background: #2f3446;
+  display: inline-block;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.toggle input:checked + .toggle-indicator {
+  background: linear-gradient(120deg, #4c7dff, #6da8ff);
+}
+
+.call-card .subtitle.small {
+  color: #c1c5ce;
+  margin-bottom: 10px;
+}
+
+.status-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+}
+
+.status-pill {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #1c2032;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-transform: lowercase;
+}
+
+.status-pill.secondary {
+  background: rgba(76, 125, 255, 0.12);
+  border-color: rgba(76, 125, 255, 0.5);
+}
+
+.status-pill[data-state="error"],
+.status-pill[data-state="down"] {
+  background: rgba(255, 109, 109, 0.15);
+  border-color: rgba(255, 109, 109, 0.5);
+}
+
+.status-pill[data-state="ok"],
+.status-pill[data-state="live"] {
+  background: rgba(101, 233, 171, 0.12);
+  border-color: rgba(101, 233, 171, 0.5);
+}
+
+.call-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+
+.btn.small {
+  padding: 8px 12px;
+  font-size: 0.9rem;
+  margin: 0;
+  box-shadow: none;
+}
+
+.log-panel, .output-panel {
+  background: #0c0f1b;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 12px;
+  margin-top: 12px;
+}
+
+.panel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.log-list {
+  max-height: 200px;
+  overflow-y: auto;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.log-entry {
+  font-family: "SFMono-Regular", monospace;
+  font-size: 0.95rem;
+  background: #0f1322;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.output-panel .pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #1c2032;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.9rem;
+}
+
+.transcript {
+  min-height: 120px;
+  max-height: 220px;
+  overflow-y: auto;
+  text-align: left;
+  margin-top: 10px;
+  display: grid;
+  gap: 8px;
+}
+
+.transcript .ts {
+  color: #8ea0ff;
+  font-family: "SFMono-Regular", monospace;
+  margin-right: 6px;
+}
+
+.runtime-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.runtime-card {
+  background: #0f1220;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 14px;
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.28);
+  text-align: left;
 }
 
 .demo-section h2,
