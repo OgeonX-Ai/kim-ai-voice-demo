@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -8,83 +7,139 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta
     name="description"
-    content="Interactive AI voice demo by Kim Harjamäki. Try the demo, connect on LinkedIn, and explore cloud & AI projects."
+    content="Interactive AI voice demo by Kim Harjamäki. Try the demo, create your own ElevenLabs agent, and use GitHub Pages redirects to track links."
   />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-<body style="font-family: sans-serif; max-width: 800px; margin: 60px auto;">
-  <!-- Hero -->
   <section class="hero">
     <div class="container">
-      <h1>Hi, I'm Kim Harjamäki</h1>
-      <p class="subtitle">Azure Architect, DevOps Engineer & AI Voice Innovator</p>
-
-  <h1>AI Voice Demo · Powered by ElevenLabs</h1>
-  <p>This is my personal demo page where I show my real-time AI voice work.</p>
-      <div class="buttons">
-        <a class="btn primary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">Connect on LinkedIn</a>
-        <a class="btn secondary" href="#demo">Try the Voice Demo</a>
-      </div>
-
-  <h2>🔥 Try the ElevenLabs engine I use</h2>
-  <p>
-    Click here to test it:  
-    <a href="elevenlabs/index.html">https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs</a>
-  </p>
-      <p class="hero-note">
-        Built by Kim — showcasing real-time AI voice demos and cloud automation.
+      <p class="eyebrow">Real-time AI voice · Azure · DevOps</p>
+      <h1>AI Voice Demo — Powered by ElevenLabs</h1>
+      <p class="subtitle">
+        Build and share an interactive AI CV agent in minutes. Try my voice demo and start with the same ElevenLabs setup I use.
       </p>
+      <div class="buttons">
+        <a class="btn primary" href="https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs" target="_blank" rel="noopener noreferrer">
+          Create your free ElevenLabs account
+        </a>
+        <p class="cta-subtext">
+          <a href="https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs" target="_blank" rel="noopener noreferrer">
+            Already have an account? Create an Agent and upload your CV
+          </a>
+        </p>
+        <p class="disclosure">Disclosure: This link redirects via my tracking page (affiliate). No extra cost.</p>
+      </div>
     </div>
   </section>
 
-  <h2>📱 My projects</h2>
-  <ul>
-    <li>Real-time AI voice mobile app (Android)</li>
-    <li>Web-based AI voice chat</li>
-    <li>Customer support AI agent experiments</li>
-  </ul>
-  <!-- Demo -->
   <section id="demo" class="demo-section">
     <div class="container">
       <h2>Interactive AI Voice Demo</h2>
       <p>Type your text and hear how it sounds using a modern AI voice engine.</p>
-
-  <h2>👋 About me</h2>
-  <p>
-    I'm Kim, Azure & DevOps Architect building modern AI-powered voice applications.
-    This page will soon include full demos, code examples, and integrations.
-  </p>
       <form id="demo-form">
         <textarea id="demo-text" placeholder="Type something..." rows="4"></textarea>
         <button type="submit" class="btn primary btn-large">Generate Voice</button>
       </form>
-
       <audio id="audio-player" controls></audio>
-
       <p class="affiliate-note">
         Want more voices? Try the engine I use:
-        <a class="affiliate-link" href="https://try.elevenlabs.io/grs57m362vnn" target="_blank">Try ElevenLabs</a>
+        <a class="affiliate-link" href="https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs" target="_blank" rel="noopener noreferrer">Try ElevenLabs</a>
       </p>
     </div>
   </section>
 
-  <!-- About You -->
+  <section class="projects">
+    <div class="container">
+      <h2>📱 Recent builds</h2>
+      <ul class="project-list">
+        <li>Real-time AI voice mobile app (Android)</li>
+        <li>Web-based AI voice chat</li>
+        <li>Customer support AI agent experiments</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="guide">
+    <div class="container">
+      <h2>Build your own interactive AI CV (10–15 minutes)</h2>
+      <ol class="step-list">
+        <li>
+          <h3>1) Create your ElevenLabs Agent</h3>
+          <p>Agents → New agent. Pick a voice and language so responses sound natural.</p>
+        </li>
+        <li>
+          <h3>2) Build your Knowledge Base (KB) using Markdown files</h3>
+          <p>Use structured Markdown to keep answers grounded and concise. Start with <strong>cv.md</strong>, <strong>projects.md</strong>, <strong>skills.md</strong>, and <strong>glossary.md</strong>.</p>
+        </li>
+        <li>
+          <h3>3) Set the system prompt rules</h3>
+          <p>Ground answers in the KB only, never invent experience, and switch between Finnish and English based on user input.</p>
+        </li>
+        <li>
+          <h3>4) Add evaluation criteria (quality + safety)</h3>
+          <p>Check grounding to the CV, answer relevance, clarity of technical explanations, accurate seniority, and overall user satisfaction.</p>
+        </li>
+        <li>
+          <h3>5) Secure access</h3>
+          <p>Enable authentication, share invite links with expiry + single use, and set daily call limits.</p>
+        </li>
+        <li>
+          <h3>6) Share on LinkedIn</h3>
+          <p>Post the project with the agent link. Add a screenshot or short demo video for quick proof.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="templates">
+    <div class="container">
+      <h2>Download KB templates</h2>
+      <p class="subtitle">Copy, edit, and upload these Markdown files to keep your agent grounded.</p>
+      <div class="template-grid">
+        <a class="template-card" href="kb-templates/cv.md" download>cv.md</a>
+        <a class="template-card" href="kb-templates/projects.md" download>projects.md</a>
+        <a class="template-card" href="kb-templates/skills.md" download>skills.md</a>
+        <a class="template-card" href="kb-templates/glossary.md" download>glossary.md</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="redirect-guide">
+    <div class="container">
+      <h2>How the redirect link works (and how to copy it)</h2>
+      <p>
+        A GitHub Pages redirect page is a tiny HTML file that forwards to your affiliate or tracking URL. Share one stable link everywhere, and swap the destination anytime.
+      </p>
+      <div class="redirect-details">
+        <p><strong>Structure:</strong> /elevenlabs/index.html (or /elevenlabs.html) → redirects to your affiliate link.</p>
+        <p><strong>Tip:</strong> Add optional UTM parameters to your target URL for analytics.</p>
+      </div>
+      <pre class="code-block"><code>&lt;!doctype html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset="utf-8" /&gt;
+    &lt;meta http-equiv="refresh" content="0; url=https://try.elevenlabs.io/YOURCODE" /&gt;
+    &lt;link rel="canonical" href="https://try.elevenlabs.io/YOURCODE" /&gt;
+    &lt;title&gt;Redirecting…&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Redirecting…&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;</code></pre>
+    </div>
+  </section>
+
   <section class="about-section">
     <div class="container">
       <h2>About Me</h2>
       <p>
-        I design and build scalable cloud solutions with Azure and DevOps,
-        and prototype AI voice applications that integrate real-time speech
-        technologies. I focus on delivering reliable automation and clear
-        technical solutions.
+        I'm Kim, an Azure & DevOps Architect building real-time AI voice applications. I focus on clear system design and reliable automation.
       </p>
-      <a class="btn secondary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank">More on LinkedIn</a>
+      <a class="btn secondary" href="https://www.linkedin.com/in/kimharjamaki/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <p>© 2025 Kim Harjamäki · Azure, DevOps & AI Voice</p>
