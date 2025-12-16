@@ -1,0 +1,49 @@
+name: Sync Dev Log
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    if: github.repository_owner == 'OgeonX-Ai'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install dependencies
+        run: npm install
+        working-directory: scripts
+        continue-on-error: true
+      - name: Sync merged PRs across org
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_AGGREGATOR_TOKEN: ${{ secrets.GH_AGGREGATOR_TOKEN }}
+        run: |
+          node scripts/sync-org-prs.mjs
+      - name: Commit changes
+        run: |
+          if [ -n "$(git status --porcelain webdemo/updates scripts/sync-org-prs.mjs)" ]; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add webdemo/updates scripts/sync-org-prs.mjs
+            git commit -m "chore(devlog): sync merged PRs from OgeonX-Ai"
+          else
+            echo "No changes to commit"
+          fi
+      - name: Push changes
+        if: success()
+        run: |
+          if [ -n "$(git log -1 --pretty=format:%s | grep 'chore(devlog): sync merged PRs from OgeonX-Ai')" ]; then
+            git push origin HEAD:${GITHUB_REF_NAME}
+          else
+            echo "Nothing to push"
+          fi
