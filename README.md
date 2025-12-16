@@ -7,7 +7,7 @@ A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-t
 ## 🚀 Live Demo & Links
 
 [![Live Demo](https://img.shields.io/badge/Live_Demo-Open-blue?style=for-the-badge&logo=github)](https://ogeonx-ai.github.io/kim-ai-voice-demo/)
-[![Try the Voice Engine](https://img.shields.io/badge/Try_ElevenLabs🔥-Demo-orange?style=for-the-badge&logo=ai)](https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs)
+[![Try the Voice Engine](https://img.shields.io/badge/Build_your_AI_CV-Launch-orange?style=for-the-badge&logo=ai)](https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs)
 
 *Disclosure: The ElevenLabs link redirects via my tracking page (affiliate). No extra cost.*
 
@@ -42,19 +42,53 @@ A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-t
 - Easy backend integration (Node/Python)
 - Masked affiliate redirect
 - Developer-friendly structure and demo flow
+- Whisper Playground (mic capture → multipart upload to `/v1/audio/transcribe-file`)
+- Auto-published Dev Updates blog from merged PRs
 
 ---
 
 ## 🏁 Quick start: build your interactive AI CV
 
-1) **Create an ElevenLabs Agent** — Agents → New agent, pick voice + language.  
-2) **Load your Knowledge Base** — Upload Markdown files: `cv.md`, `projects.md`, `skills.md`, `glossary.md` from [`/kb-templates/`](kb-templates/).  
-3) **Set system rules** — Ground answers in the KB only, avoid invented experience, switch Finnish/English based on user input.  
-4) **Add evaluation criteria** — Grounding to CV, relevance, clarity of technical explanations, accurate seniority, user satisfaction.  
-5) **Secure access** — Enable auth, use invite links with expiry + single use, set daily call limits.  
-6) **Share** — Post on LinkedIn with your GitHub Pages redirect link.
-
 Live page with the full guide: https://ogeonx-ai.github.io/kim-ai-voice-demo/
+
+1) **Open ElevenLabs** — Use the GitHub Pages CTA redirect: [`/elevenlabs`](https://ogeonx-ai.github.io/kim-ai-voice-demo/elevenlabs).
+2) **Create an Agent** — Agents → New agent, choose voice + language.
+3) **Upload the Knowledge Base** — Add Markdown files from [`/kb-templates/`](kb-templates/): `cv.md`, `projects.md`, `skills.md`, `glossary.md`, `tone.md`.
+4) **System prompt** — Ground answers in the KB only; if something isn’t in the KB, say so; keep sentences short and friendly.
+5) **Evaluation criteria** — Grounding to CV, answer relevance, clarity of technical explanations, accurate seniority, user satisfaction.
+6) **Invite link (10-minute minimum)** — In your agent: Security / Share → create a time-limited invite link (minimum 10 minutes) and share it via DM/email/featured link.
+7) **Share** — Post the project with your invite link or GitHub Pages redirect.
+
+---
+
+## 🧠 Partial automation backend
+
+`enterprise-ai-gateway` adds an optional API to create an ElevenLabs agent and return a time-limited invite link.
+
+- **Endpoint:** `POST /api/elevenlabs/agent-auto`
+  - Body: `{ "api_key": "<your_key>", "agent_name": "My CV Agent" }`
+  - Validates the key, calls `convai/agents/create`, then fetches the agent share link.
+  - Returns: `{ agent_id, share_link }`
+- **Security:** API keys are only used in-memory per request. They are **not** stored. If you need persistent storage, use a vault such as Azure Key Vault.
+- **Whisper test:** `POST /api/whisper-test` accepts an audio file and returns a stub transcript (swap in your STT provider).
+
+## 🎙 Whisper Playground
+
+- Page: [`/webdemo/whisper.html`](webdemo/whisper.html)
+- What it does: records microphone audio via MediaRecorder, then uploads a single `multipart/form-data` request with the blob as `audio.wav` plus JSON `settings`.
+- Default backend target: `http://127.0.0.1:8000/v1/audio/transcribe-file` (edit the input to match your host).
+- Controls include model (tiny/small/medium), language (fi/en/auto), beam size, VAD toggle, and chunk seconds slider.
+- Panels show logs, live status, transcription text, and any timing metrics returned by the backend.
+
+### Run locally
+
+```bash
+cd enterprise-ai-gateway
+npm install
+npm start
+```
+
+The server listens on port `3001` by default. Point the frontend calls at your running backend (e.g., proxy `/api` locally).
 
 ---
 
@@ -73,8 +107,23 @@ kim-ai-voice-demo/
 │     ├── cv.md
 │     ├── projects.md
 │     ├── skills.md
-│     └── glossary.md
+│     ├── glossary.md
+│     └── tone.md
 │
+│── webdemo/
+│     ├── index.html      # Auxiliary voice companion demo
+│     └── whisper.html    # Whisper Playground (mic capture + upload)
+│     └── updates/        # Auto-generated Dev Updates posts + index
+│
+├── scripts/
+│     └── generate-dev-update.mjs # Script run by GitHub Actions to publish PR summaries
+│
+├── .github/workflows/
+│     └── publish-dev-updates.yml # Automates Dev Updates on merged PRs to main
+│
+├── enterprise-ai-gateway/  # Optional backend for automation + Whisper test
+│     ├── package.json
+│     └── server.js
 └── assets/            # (optional) images, screenshots
 ~~~
 
