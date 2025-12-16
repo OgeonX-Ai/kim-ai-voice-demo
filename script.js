@@ -46,6 +46,15 @@ function addLog(message) {
   entry.textContent = `[${timestamp()}] ${message}`;
   logContainer.prepend(entry);
 }
+document.addEventListener("DOMContentLoaded", () => {
+  const form = document.getElementById("demo-form");
+  const textField = document.getElementById("demo-text");
+  const audioPlayer = document.getElementById("audio-player");
+  const agentAutoForm = document.getElementById("agent-auto-form");
+  const agentAutoStatus = document.getElementById("agent-auto-status");
+  const agentAutoResult = document.getElementById("agent-auto-result");
+  const whisperForm = document.getElementById("whisper-form");
+  const whisperStatus = document.getElementById("whisper-status");
 
 function appendTranscript(text) {
   const transcript = document.getElementById("call-transcript");
