@@ -159,6 +159,23 @@ body {
   box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
+.dev-links {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.btn.ghost {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  background: transparent;
+  color: #e5e7eb;
+}
+
+.btn.ghost:hover {
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
 .dev-card h2 {
   margin: 6px 0 4px;
 }

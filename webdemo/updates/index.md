@@ -1,3 +1,6 @@
-# Dev Updates
+# Dev Log
 
-_This page will list merged pull requests automatically._
+Latest 100 merged PRs across public repositories in **OgeonX-Ai**.
+
+| Date | Repo | PR | + / - | Files |
+| --- | --- | --- | --- | --- |
