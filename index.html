@@ -33,13 +33,52 @@
     </div>
   </section>
 
+  <section class="call-whisper" id="voice-demos">
+    <div class="container">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Voice assistants</p>
+          <h2>Pick your demo</h2>
+          <p class="subtitle">Primary: Voice → ServiceNow Assistant with live tool calls. Secondary: Whisper Playground for raw STT chunks.</p>
+        </div>
+        <div class="badge-row">
+          <span class="pill">Local backend required</span>
+          <span class="pill">No secrets stored</span>
+          <span class="pill">Mock mode available</span>
+        </div>
+      </div>
+      <div class="call-grid">
+        <div class="info-card">
+          <div class="info-title">Voice-to-ServiceNow Assistant</div>
+          <p class="subtitle">Talk, see intents + tool calls, and run in mock mode. Designed for ServiceNow actions via your local backend.</p>
+          <ul class="info-bullets">
+            <li>Backend status, mock/real detection, and live logs (SSE).</li>
+            <li>Actions timeline: transcript → intent → tool calls → results → work notes.</li>
+            <li>Copy/paste tool endpoints into ElevenLabs Agent builder when ready.</li>
+          </ul>
+          <a class="btn primary" href="webdemo/servicenow.html">Open Voice → ServiceNow demo</a>
+        </div>
+        <div class="info-card">
+          <div class="info-title">Whisper Playground</div>
+          <p class="subtitle">Hands-free chunked mic uploads to your local Whisper backend. Great for testing latency + accuracy.</p>
+          <ul class="info-bullets">
+            <li>Call / End call controls with continuous recording.</li>
+            <li>Status pills, runtime cards, and friendly error messages.</li>
+            <li>Stay on localhost — nothing persisted in GitHub Pages.</li>
+          </ul>
+          <a class="btn secondary" href="webdemo/whisper.html">Open Whisper Playground</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section class="call-whisper" id="call-whisper">
     <div class="container">
       <div class="section-heading">
         <div>
           <p class="eyebrow">Live speech-to-text</p>
-          <h2>Call Whisper (Local STT demo)</h2>
-          <p class="subtitle">Hands-free mic capture that streams chunks to your local Whisper backend. Designed to feel like a phone call.</p>
+          <h2>Whisper Playground (secondary)</h2>
+          <p class="subtitle">Hands-free mic capture that streams chunks to your local Whisper backend. Primary ServiceNow assistant lives above; this remains for raw STT testing.</p>
         </div>
         <div class="backend-banner" id="backend-banner" hidden>
           <p>Local backend not running. <a href="webdemo/setup-local-backend.html" target="_blank" rel="noopener noreferrer">See setup guide</a>.</p>

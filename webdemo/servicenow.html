@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Voice → ServiceNow Assistant | Local Demo</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body class="dark-bg">
+  <header class="page-header">
+    <div class="container">
+      <p class="eyebrow">Voice to ServiceNow · Local tools</p>
+      <h1>Voice → ServiceNow Assistant (Local demo)</h1>
+      <p class="subtitle">
+        Talk on this page, watch the agent plan + call ServiceNow tools (mock mode supported), and hear the response. Backend runs locally at <code>http://127.0.0.1:8000</code> — no secrets stored on GitHub Pages.
+      </p>
+      <div class="badge-row">
+        <span class="pill">Local backend required</span>
+        <span class="pill">No secrets stored</span>
+        <span class="pill" id="mock-mode-pill">Mode: -</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="status-banner">
+    <div class="container banner-grid">
+      <div class="banner-col">
+        <p class="eyebrow">Backend</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-backend">checking…</span>
+          <span class="note" id="backend-url-label">http://127.0.0.1:8000</span>
+        </div>
+      </div>
+      <div class="banner-col">
+        <p class="eyebrow">ServiceNow</p>
+        <div class="banner-row">
+          <span class="status-pill secondary" id="status-servicenow">detecting…</span>
+          <span class="note" id="status-mode">-</span>
+        </div>
+      </div>
+      <div class="banner-col">
+        <p class="eyebrow">Speech</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-stt">-</span>
+          <span class="note" id="status-model">-</span>
+        </div>
+      </div>
+      <div class="banner-col">
+        <p class="eyebrow">ElevenLabs</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-elevenlabs">checking…</span>
+          <span class="note" id="status-last">-</span>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="banner-warning" hidden>
+      <div class="warning-card">ElevenLabs credits unavailable — switching to local fallback.</div>
+    </div>
+  </section>
+
+  <section class="mode-switch">
+    <div class="container">
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-header">
+            <h2>Talk via ElevenLabs Agent</h2>
+            <span class="pill">Primary</span>
+          </div>
+          <p class="subtitle">Use your time-limited invite link (minimum 10 minutes) and let the ElevenLabs Agent call these tools.</p>
+          <ul class="info-bullets">
+            <li>Copy tool endpoints for the Agent builder.</li>
+            <li>Generate and share invite links safely — no keys stored here.</li>
+            <li>Backend stays local; ServiceNow mock mode supported.</li>
+          </ul>
+          <div class="mode-actions">
+            <a class="btn primary" id="agent-call-btn" href="#call-panel">Use ElevenLabs Agent</a>
+            <p class="note">If ElevenLabs is unavailable, we will keep you in local fallback.</p>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-header">
+            <h2>Fallback: Local Whisper</h2>
+            <span class="pill secondary">No credits needed</span>
+          </div>
+          <p class="subtitle">Hands-free mic capture to /v1/audio/transcribe-file with tool actions. Great when ElevenLabs is down.</p>
+          <ul class="info-bullets">
+            <li>Continuous chunked uploads after Call.</li>
+            <li>Tool buttons for mock ServiceNow actions.</li>
+            <li>Live backend logs and runtime stats.</li>
+          </ul>
+          <div class="mode-actions">
+            <a class="btn secondary" href="#call-panel">Use local fallback</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="call-panel" id="call-panel">
+    <div class="container call-flex">
+      <div class="call-controls">
+        <div class="call-header">
+          <div>
+            <p class="eyebrow">Phone-call feel</p>
+            <h2>Voice-to-ServiceNow Assistant</h2>
+          </div>
+          <div class="status-row">
+            <span class="status-pill" id="call-status">idle</span>
+            <span class="status-pill secondary" id="backend-pill">checking...</span>
+          </div>
+        </div>
+        <div class="info-panel">
+          <h3>How it works</h3>
+          <ul class="info-bullets">
+            <li>Speech-to-text via local Whisper backend.</li>
+            <li>Agent plans intent + tool calls for ServiceNow.</li>
+            <li>Mock mode available; no ServiceNow key stored.</li>
+            <li>Agent response can be spoken via ElevenLabs (optional).</li>
+          </ul>
+          <details class="accordion">
+            <summary>Upgrade to Azure (next step)</summary>
+            <p>Swap Whisper for Azure Speech via the same gateway for faster, more accurate Finnish and team-scale performance.</p>
+            <a class="btn ghost small" href="azure-plan.html" target="_blank" rel="noopener noreferrer">See Azure plan</a>
+          </details>
+        </div>
+        <div class="controls-row">
+          <button class="btn primary" id="call-btn">Call</button>
+          <button class="btn secondary" id="end-btn" disabled>End call</button>
+          <div class="pill" id="call-hint">Press Call to request mic permission.</div>
+        </div>
+        <div class="advanced">
+          <details class="accordion">
+            <summary>Advanced settings</summary>
+            <div class="settings-grid">
+              <label>Backend URL
+                <input id="backend-url" type="text" value="http://127.0.0.1:8000" />
+              </label>
+              <label>Model
+                <select id="model-select">
+                  <option value="tiny">tiny</option>
+                  <option value="small">small</option>
+                  <option value="medium">medium</option>
+                </select>
+              </label>
+              <label>Language
+                <select id="language-select">
+                  <option value="auto">auto</option>
+                  <option value="en">en</option>
+                  <option value="fi">fi</option>
+                </select>
+              </label>
+              <label>Beam width
+                <input id="beam-width" type="range" min="1" max="5" value="3" />
+              </label>
+              <label>Chunk seconds
+                <input id="chunk-seconds" type="range" min="1" max="6" value="3" />
+              </label>
+              <label class="toggle">Voice activity detection
+                <input id="vad-toggle" type="checkbox" />
+                <span class="toggle-indicator"></span>
+              </label>
+            </div>
+          </details>
+        </div>
+        <div class="demo-prompts">
+          <p class="eyebrow">Try saying</p>
+          <div class="prompt-grid">
+            <span class="pill">Check INC0012345 status</span>
+            <span class="pill">Add a work note: user confirmed reboot didn't help</span>
+            <span class="pill">Notify resolver and ask for ETA</span>
+            <span class="pill">Schedule a follow-up with resolver tomorrow morning</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panels">
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Live Transcript</h3>
+            <span class="pill" id="transcript-state">waiting</span>
+          </div>
+          <div id="transcript" class="transcript"></div>
+          <div class="action-buttons">
+            <button class="btn ghost small" id="btn-search">Search incidents</button>
+            <button class="btn ghost small" id="btn-get">Get ticket</button>
+            <button class="btn ghost small" id="btn-note">Add work note</button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Actions Timeline</h3>
+            <button class="btn ghost small" id="clear-timeline">Clear</button>
+          </div>
+          <div id="timeline" class="timeline"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-header">
+            <h3>Backend Live Logs</h3>
+            <button class="btn ghost small" id="clear-logs">Clear</button>
+          </div>
+          <div id="logs" class="log-list"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="tools-docs">
+    <div class="container">
+      <h2>Tool endpoints for ElevenLabs Agent</h2>
+      <p class="subtitle">Copy these into your Agent tools. Backend base URL: <code id="base-url-label">http://127.0.0.1:8000</code></p>
+      <div class="tool-grid">
+        <div class="tool-card">
+          <div class="tool-header">
+            <h3>Base URL</h3>
+            <button class="btn ghost small copy-btn" data-copy="http://127.0.0.1:8000">Copy</button>
+          </div>
+          <code class="code-block">http://127.0.0.1:8000</code>
+        </div>
+        <div class="tool-card">
+          <div class="tool-header">
+            <h3>Endpoints</h3>
+            <button class="btn ghost small copy-btn" data-copy="/v1/tools/servicenow/search\n/v1/tools/servicenow/ticket/get\n/v1/tools/servicenow/ticket/update\n/v1/tools/servicenow/ticket/add_work_note\n/v1/tools/servicenow/notify_resolver\n/v1/tools/servicenow/schedule_followup">Copy list</button>
+          </div>
+          <code class="code-block">/v1/tools/servicenow/search
+/v1/tools/servicenow/ticket/get
+/v1/tools/servicenow/ticket/update
+/v1/tools/servicenow/ticket/add_work_note
+/v1/tools/servicenow/notify_resolver
+/v1/tools/servicenow/schedule_followup</code>
+        </div>
+        <div class="tool-card">
+          <div class="tool-header">
+            <h3>Example payload</h3>
+            <button class="btn ghost small copy-btn" data-copy='{"incident_id":"INC0012345","work_note":"User confirmed reboot didn\'t help"}'>Copy JSON</button>
+          </div>
+          <code class="code-block">{
+  "incident_id": "INC0012345",
+  "work_note": "User confirmed reboot didn't help"
+}</code>
+        </div>
+      </div>
+      <details class="accordion">
+        <summary>How to connect your ElevenLabs Agent</summary>
+        <ol class="step-list">
+          <li>In ElevenLabs, open your agent → Tools → Add HTTP tool.</li>
+          <li>Use <code>http://127.0.0.1:8000</code> as base; add the endpoints above.</li>
+          <li>Keep keys out of the browser. If needed, enter your ElevenLabs key in the UI — it stays in memory.</li>
+          <li>Create a time-limited invite link (minimum 10 minutes) from the ElevenLabs dashboard to share the agent.</li>
+        </ol>
+      </details>
+    </div>
+  </section>
+
+  <section class="manual-setup">
+    <div class="container">
+      <h2>Backend not running?</h2>
+      <p class="subtitle">Disable Call, then follow these steps to start the local gateway.</p>
+      <ol class="step-list">
+        <li>Clone this repo locally.</li>
+        <li>Start your backend at <code>http://127.0.0.1:8000</code> (see README_webdemo.md).</li>
+        <li>Ensure <code>/healthz</code> and <code>/v1/tools/servicenow/capabilities</code> respond.</li>
+        <li>Reload this page and click Call.</li>
+      </ol>
+      <a class="btn secondary" href="../README.md" target="_blank" rel="noopener noreferrer">Open repo README</a>
+    </div>
+  </section>
+
+  <script src="servicenow.js" type="module"></script>
+</body>
+</html>

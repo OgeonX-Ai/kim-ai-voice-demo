@@ -430,27 +430,46 @@
       formData.append('file', new File([blob], 'audio.wav', { type: blob.type || 'audio/wav' }));
       formData.append('settings', JSON.stringify({ model, language, beam_size, enable_vad, chunk_seconds }));
 
-      const url = `${backendUrl}/v1/audio/transcribe-file`;
-      addLog(`Uploading ${Math.round(blob.size / 1024)} KB to ${url} …`);
+      const endpoints = [
+        `${backendUrl}/v1/audio/transcribe-file`,
+        `${backendUrl}/v1/audio/transcribe`,
+      ];
+      addLog(`Uploading ${Math.round(blob.size / 1024)} KB (trying ${endpoints.join(" or ")}) …`);
       updateStatus('Thinking…', 'idle');
       outputEl.textContent = 'Thinking…';
 
       try {
         const uploadStart = performance.now();
-        const res = await fetch(url, { method: 'POST', body: formData });
-        const elapsed = performance.now() - uploadStart;
-
-        if (!res.ok) {
-          const msg = `Upload failed (${res.status})`;
+        let data = null;
+        let success = false;
+        for (const url of endpoints) {
+          const res = await fetch(url, { method: 'POST', body: formData });
+          const elapsed = performance.now() - uploadStart;
+          if (res.ok) {
+            data = await res.json();
+            addLog(`Received response from ${url} in ${elapsed.toFixed(0)} ms.`);
+            success = true;
+            break;
+          }
+          if (res.status === 404) {
+            addLog(`${url} missing (404). Trying fallback…`);
+            continue;
+          }
+          const msg = res.status === 415 ? 'Unsupported audio format. Try WAV.' : `Upload failed (${res.status})`;
           addLog(msg);
           updateStatus('Error', 'error');
           outputEl.textContent = msg;
           return;
         }
 
-        const data = await res.json();
-        addLog(`Received response in ${elapsed.toFixed(0)} ms.`);
-        renderOutput(data);
+        if (!success) {
+          addLog('No transcription endpoint available.');
+          updateStatus('Error', 'error');
+          outputEl.textContent = 'No transcription endpoint available.';
+          return;
+        }
+
+        renderOutput(data || {});
         updateStatus('Success', 'success');
       } catch (err) {
         console.error(err);

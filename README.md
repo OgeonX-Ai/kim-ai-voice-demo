@@ -46,6 +46,7 @@ A clean demonstration of real-time AI voice workflows using ElevenLabs, speech-t
 - Developer-friendly structure and demo flow
 - Whisper Playground (mic capture → multipart upload to `/v1/audio/transcribe-file`)
 - Call-style Whisper demo with backend health detection, continuous chunk uploads, and live latency stats
+- Voice → ServiceNow assistant page with mock/real detection, live logs, and actions timeline
 - Auto-published Dev Log that aggregates merged PRs across all public OgeonX-Ai repositories
 
 ---
@@ -82,6 +83,15 @@ Live page with the full guide: https://ogeonx-ai.github.io/kim-ai-voice-demo/
 - Default backend target: `http://127.0.0.1:8000/v1/audio/transcribe-file` (edit the input to match your host).
 - Controls include model (tiny/small/medium), language (fi/en/auto), beam size, VAD toggle, and chunk seconds slider.
 - Panels show logs, live status, transcription text, and any timing metrics returned by the backend.
+
+## 🤖 Voice → ServiceNow Assistant (primary demo)
+
+- Page: [`/webdemo/servicenow.html`](webdemo/servicenow.html)
+- Shows backend reachability, mock/real ServiceNow mode, runtime stats, and live SSE logs.
+- Call / End call starts continuous mic capture; each chunk goes to `/v1/audio/transcribe-file` then `/v1/agent/plan-and-act` (fallback: `/v1/chat`) with `mode=servicenow_demo`.
+- Actions timeline renders transcript → intent → tool calls → responses; optional ElevenLabs speech can read the final text.
+- Tool endpoints are listed with copy buttons so you can plug them into the ElevenLabs Agent builder. Invite links remain time-limited (minimum 10 minutes).
+- Troubleshooting + backend start steps live in [`README_webdemo.md`](README_webdemo.md).
 
 ## ☎️ Call Whisper (homepage)
 
