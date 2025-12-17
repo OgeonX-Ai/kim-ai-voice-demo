@@ -22,37 +22,81 @@
     </div>
   </header>
 
-  <section class="status-bar">
-    <div class="container status-grid">
-      <div class="status-card">
+  <section class="status-banner">
+    <div class="container banner-grid">
+      <div class="banner-col">
         <p class="eyebrow">Backend</p>
-        <h3 id="backend-status">Checking...</h3>
-        <p class="note" id="backend-url-label">http://127.0.0.1:8000</p>
-        <p class="note" id="last-error">Last error: -</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-backend">checking…</span>
+          <span class="note" id="backend-url-label">http://127.0.0.1:8000</span>
+        </div>
       </div>
-      <div class="status-card">
-        <p class="eyebrow">Mock/Real</p>
-        <h3 id="mock-mode">Detecting...</h3>
-        <p class="note">Read from /v1/tools/servicenow/capabilities</p>
+      <div class="banner-col">
+        <p class="eyebrow">ServiceNow</p>
+        <div class="banner-row">
+          <span class="status-pill secondary" id="status-servicenow">detecting…</span>
+          <span class="note" id="status-mode">-</span>
+        </div>
       </div>
-      <div class="status-card">
-        <p class="eyebrow">Runtime</p>
-        <p id="runtime-provider">Provider: -</p>
-        <p id="runtime-model">Model: -</p>
-        <p id="runtime-hardware">Hardware: -</p>
-        <p id="runtime-status" class="note">Status: Checking...</p>
+      <div class="banner-col">
+        <p class="eyebrow">Speech</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-stt">-</span>
+          <span class="note" id="status-model">-</span>
+        </div>
       </div>
-      <div class="status-card">
-        <p class="eyebrow">Performance</p>
-        <p id="runtime-requests">Total requests: -</p>
-        <p id="runtime-p50">p50 latency: -</p>
-        <p id="runtime-p95">p95 latency: -</p>
-        <p id="runtime-error" class="note">Last error: -</p>
+      <div class="banner-col">
+        <p class="eyebrow">ElevenLabs</p>
+        <div class="banner-row">
+          <span class="status-pill" id="status-elevenlabs">checking…</span>
+          <span class="note" id="status-last">-</span>
+        </div>
+      </div>
+    </div>
+    <div class="container" id="banner-warning" hidden>
+      <div class="warning-card">ElevenLabs credits unavailable — switching to local fallback.</div>
+    </div>
+  </section>
+
+  <section class="mode-switch">
+    <div class="container">
+      <div class="mode-grid">
+        <div class="mode-card">
+          <div class="mode-header">
+            <h2>Talk via ElevenLabs Agent</h2>
+            <span class="pill">Primary</span>
+          </div>
+          <p class="subtitle">Use your time-limited invite link (minimum 10 minutes) and let the ElevenLabs Agent call these tools.</p>
+          <ul class="info-bullets">
+            <li>Copy tool endpoints for the Agent builder.</li>
+            <li>Generate and share invite links safely — no keys stored here.</li>
+            <li>Backend stays local; ServiceNow mock mode supported.</li>
+          </ul>
+          <div class="mode-actions">
+            <a class="btn primary" id="agent-call-btn" href="#call-panel">Use ElevenLabs Agent</a>
+            <p class="note">If ElevenLabs is unavailable, we will keep you in local fallback.</p>
+          </div>
+        </div>
+        <div class="mode-card">
+          <div class="mode-header">
+            <h2>Fallback: Local Whisper</h2>
+            <span class="pill secondary">No credits needed</span>
+          </div>
+          <p class="subtitle">Hands-free mic capture to /v1/audio/transcribe-file with tool actions. Great when ElevenLabs is down.</p>
+          <ul class="info-bullets">
+            <li>Continuous chunked uploads after Call.</li>
+            <li>Tool buttons for mock ServiceNow actions.</li>
+            <li>Live backend logs and runtime stats.</li>
+          </ul>
+          <div class="mode-actions">
+            <a class="btn secondary" href="#call-panel">Use local fallback</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="call-panel">
+  <section class="call-panel" id="call-panel">
     <div class="container call-flex">
       <div class="call-controls">
         <div class="call-header">
@@ -136,6 +180,11 @@
             <span class="pill" id="transcript-state">waiting</span>
           </div>
           <div id="transcript" class="transcript"></div>
+          <div class="action-buttons">
+            <button class="btn ghost small" id="btn-search">Search incidents</button>
+            <button class="btn ghost small" id="btn-get">Get ticket</button>
+            <button class="btn ghost small" id="btn-note">Add work note</button>
+          </div>
         </div>
 
         <div class="panel">

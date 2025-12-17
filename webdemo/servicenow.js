@@ -11,8 +11,10 @@ let mediaRecorder = null;
 let chunkTimer = null;
 let callActive = false;
 let runtimePoll = null;
+let statusPoll = null;
 let logsSource = null;
 let sessionId = crypto.randomUUID();
+let lastTranscript = "";
 
 function ts() {
   return new Date().toLocaleTimeString();
@@ -20,6 +22,10 @@ function ts() {
 
 function byId(id) {
   return document.getElementById(id);
+}
+
+function updateText(node, text) {
+  if (node) node.textContent = text;
 }
 
 function setCallStatus(state, detail = "") {
@@ -62,6 +68,7 @@ function appendTranscript(text) {
   line.innerHTML = `<span class="ts">${ts()}</span> ${text}`;
   container.appendChild(line);
   container.scrollTop = container.scrollHeight;
+  lastTranscript = text;
 }
 
 function getBackendUrl() {
@@ -83,6 +90,54 @@ function updateBaseUrlLabel() {
   const url = getBackendUrl();
   const baseLabels = document.querySelectorAll("#backend-url-label, #base-url-label");
   baseLabels.forEach((el) => (el.textContent = url));
+}
+
+async function fetchStatusBanner() {
+  const backendUrl = getBackendUrl();
+  try {
+    const res = await fetch(`${backendUrl}/v1/runtime/status`);
+    if (!res.ok) throw new Error(`Status ${res.status}`);
+    const data = await res.json();
+    const backendOk = data?.backend === "ok" || data?.status === "ok";
+    const servicenowMode = data?.servicenow?.mode || data?.servicenow_mode || "unknown";
+    const sttProvider = data?.stt?.provider || data?.provider || "-";
+    const sttModel = data?.stt?.model || data?.model || "-";
+    const elevenlabsOk = data?.elevenlabs?.status === "ok" || data?.elevenlabs_status === "ok";
+    const lastError = data?.elevenlabs?.error || data?.last_error || "-";
+
+    const backendPill = byId("status-backend");
+    if (backendPill) {
+      backendPill.textContent = backendOk ? "Backend ✅" : "Backend ❌";
+      backendPill.dataset.state = backendOk ? "ok" : "down";
+    }
+    const snPill = byId("status-servicenow");
+    if (snPill) {
+      snPill.textContent = servicenowMode === "mock" ? "Mock mode" : servicenowMode === "real" ? "Real" : "Unknown";
+      snPill.dataset.state = servicenowMode === "mock" ? "mock" : "real";
+    }
+    updateText(byId("status-mode"),
+      servicenowMode === "mock" ? "Using mock ServiceNow" : servicenowMode === "real" ? "Live ServiceNow" : "ServiceNow mode unknown");
+    updateText(byId("status-stt"), sttProvider ? `STT: ${sttProvider}` : "STT: -");
+    updateText(byId("status-model"), sttModel ? `Model: ${sttModel}` : "Model: -");
+    const elStatus = byId("status-elevenlabs");
+    if (elStatus) {
+      elStatus.textContent = elevenlabsOk ? "ElevenLabs OK" : "ElevenLabs NOT OK";
+      elStatus.dataset.state = elevenlabsOk ? "ok" : "down";
+    }
+    updateText(byId("status-last"), lastError || "-");
+    const warn = byId("banner-warning");
+    if (warn) warn.hidden = !!elevenlabsOk;
+    const agentBtn = byId("agent-call-btn");
+    if (agentBtn) agentBtn.classList.toggle("disabled", !elevenlabsOk);
+  } catch (err) {
+    updateText(byId("status-backend"), "Backend ❌");
+    updateText(byId("status-servicenow"), "Unknown");
+    updateText(byId("status-stt"), "STT: -");
+    updateText(byId("status-model"), "Model: -");
+    updateText(byId("status-elevenlabs"), "ElevenLabs NOT OK");
+    const warn = byId("banner-warning");
+    if (warn) warn.hidden = false;
+  }
 }
 
 async function checkCapabilities() {
@@ -145,9 +200,9 @@ async function fetchRuntime() {
     byId("runtime-model").textContent = `Model: ${data?.model || "-"}`;
     byId("runtime-hardware").textContent = `Hardware: ${data?.hardware || "-"}`;
     byId("runtime-status").textContent = `Status: ${data?.status || "ok"}`;
-    byId("runtime-requests").textContent = `Total requests: ${data?.total_requests ?? "-"}`;
-    byId("runtime-p50").textContent = `p50 latency: ${data?.latency_p50_ms ?? "-"} ms`;
-    byId("runtime-p95").textContent = `p95 latency: ${data?.latency_p95_ms ?? "-"} ms`;
+    byId("runtime-requests").textContent = `Total requests: ${data?.total_requests ?? data?.requests ?? "-"}`;
+    byId("runtime-p50").textContent = `p50 latency: ${data?.latency_p50_ms ?? data?.p50_ms ?? data?.p50 ?? "-"} ms`;
+    byId("runtime-p95").textContent = `p95 latency: ${data?.latency_p95_ms ?? data?.p95_ms ?? data?.p95 ?? "-"} ms`;
     byId("runtime-error").textContent = `Last error: ${data?.last_error ?? "-"}`;
   } catch (err) {
     byId("runtime-status").textContent = `Status: error`;
@@ -160,18 +215,33 @@ function startRuntimePoll() {
   runtimePoll = setInterval(fetchRuntime, 2000);
 }
 
-function stopRuntimePoll() {
-  if (runtimePoll) clearInterval(runtimePoll);
-  runtimePoll = null;
+function startStatusPoll() {
+  if (statusPoll) clearInterval(statusPoll);
+  statusPoll = setInterval(fetchStatusBanner, 30000);
+}
+
+function stopStatusPoll() {
+  if (statusPoll) clearInterval(statusPoll);
+  statusPoll = null;
 }
 
 function startLogs() {
   const backendUrl = getBackendUrl();
   if (logsSource) logsSource.close();
   try {
-    logsSource = new EventSource(`${backendUrl}/v1/logs/stream`);
+    logsSource = new EventSource(`${backendUrl}/v1/debug/stream`);
     logsSource.onmessage = (event) => log(event.data || "(log)");
-    logsSource.onerror = () => log("Log stream disconnected. Check backend.");
+    logsSource.onerror = () => {
+      log("Debug stream disconnected. Trying fallback...");
+      logsSource?.close();
+      try {
+        logsSource = new EventSource(`${backendUrl}/v1/logs/stream`);
+        logsSource.onmessage = (event) => log(event.data || "(log)");
+        logsSource.onerror = () => log("Log stream disconnected. Check backend.");
+      } catch (err) {
+        log("SSE not supported or endpoint missing.");
+      }
+    };
   } catch (err) {
     log("SSE not supported or endpoint missing.");
   }
@@ -234,18 +304,39 @@ async function uploadChunk(blob) {
   setCallStatus(callStates.uploading, "Uploading chunk...");
   setTranscriptState("thinking...");
   try {
-    const res = await fetch(`${backendUrl}/v1/audio/transcribe-file`, {
-      method: "POST",
-      body: formData,
-    });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) {
+    const endpoints = [
+      "/v1/audio/transcribe-file?provider=auto&language=fi&model=medium&vad=true&beam_size=1",
+      "/v1/audio/transcribe-file",
+      "/v1/audio/transcribe",
+    ];
+    let data = {};
+    let ok = false;
+    for (const path of endpoints) {
+      const res = await fetch(`${backendUrl}${path}`, {
+        method: "POST",
+        body: formData,
+      });
+      data = await res.json().catch(() => ({}));
+      if (res.ok) {
+        log(`Uploaded chunk to ${path}`);
+        ok = true;
+        break;
+      }
+      if (res.status === 404) {
+        log(`Endpoint ${path} missing. Trying fallback...`);
+        continue;
+      }
       let msg = "Upload failed.";
-      if (res.status === 404) msg = "Backend missing /v1/audio/transcribe-file. Update backend.";
-      else if (res.status === 415) msg = "Unsupported audio format. Try WAV.";
+      if (res.status === 415) msg = "Unsupported audio format. Try WAV.";
+      else if (res.type === "opaque") msg = "Enable CORS in backend.";
       else msg = "Network error. Start backend locally.";
       setCallStatus(callStates.error, msg);
       log(msg);
+      return;
+    }
+    if (!ok) {
+      setCallStatus(callStates.error, "Upload failed: endpoint unavailable.");
+      log("All transcription endpoints failed.");
       return;
     }
     const text = data.text || data.transcript || data.result || "(no transcript returned)";
@@ -309,6 +400,7 @@ async function startCall() {
     setCallStatus(callStates.live, "Mic granted. Recording...");
     startRecorder();
     startRuntimePoll();
+    startStatusPoll();
     startLogs();
   } catch (err) {
     callActive = false;
@@ -323,6 +415,7 @@ function endCall() {
   callActive = false;
   stopRecording(true);
   stopRuntimePoll();
+  stopStatusPoll();
   stopLogs();
   const callBtn = byId("call-btn");
   const endBtn = byId("end-btn");
@@ -330,6 +423,23 @@ function endCall() {
   if (endBtn) endBtn.disabled = true;
   setCallStatus(callStates.idle, "Call ended. Press Call to start again.");
   log("Call ended and mic released.");
+}
+
+async function runTool(endpoint, body, label) {
+  const backendUrl = getBackendUrl();
+  try {
+    const res = await fetch(`${backendUrl}${endpoint}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data?.error || `Status ${res.status}`);
+    addTimeline("tool", label, `<pre>${JSON.stringify(data, null, 2)}</pre>`);
+    log(`${label} ok via ${endpoint}`);
+  } catch (err) {
+    log(`${label} failed: ${err.message}`);
+  }
 }
 
 function attachHandlers() {
@@ -340,6 +450,7 @@ function attachHandlers() {
       return;
     }
     checkCapabilities();
+    fetchStatusBanner();
     startCall();
   });
   byId("end-btn")?.addEventListener("click", endCall);
@@ -351,6 +462,7 @@ function attachHandlers() {
       checkBackend();
       checkCapabilities();
       fetchRuntime();
+      fetchStatusBanner();
       updateBaseUrlLabel();
     });
   }
@@ -363,6 +475,20 @@ function attachHandlers() {
       });
     });
   });
+
+  byId("btn-search")?.addEventListener("click", () => {
+    runTool("/v1/tools/servicenow/search", { query: lastTranscript || "" }, "Search incidents");
+  });
+  byId("btn-get")?.addEventListener("click", () => {
+    runTool("/v1/tools/servicenow/ticket/get", { incident_id: lastTranscript || "INC0012345" }, "Get ticket");
+  });
+  byId("btn-note")?.addEventListener("click", () => {
+    runTool(
+      "/v1/tools/servicenow/ticket/add_work_note",
+      { incident_id: "INC0012345", work_note: lastTranscript || "Adding note from transcript" },
+      "Add work note"
+    );
+  });
 }
 
 async function init() {
@@ -372,6 +498,7 @@ async function init() {
   if (healthy) {
     checkCapabilities();
     fetchRuntime();
+    fetchStatusBanner();
     startLogs();
   } else {
     setCallStatus(callStates.error, "Backend not running. Call disabled.");

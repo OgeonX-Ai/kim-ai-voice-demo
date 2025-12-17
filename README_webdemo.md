@@ -17,13 +17,14 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 - http://127.0.0.1:8000/docs
 
 ## Use the GitHub Pages demo
-Open the live site and navigate to **Voice → ServiceNow Assistant** (`/webdemo/servicenow.html`). The page checks backend reachability, mock/real ServiceNow mode, and streams live logs over SSE.
+Open the live site and navigate to **Voice → ServiceNow Assistant** (`/webdemo/servicenow.html`). The page checks backend reachability, mock/real ServiceNow mode, ElevenLabs status, speech model, and streams live logs over SSE.
 
 ## Voice-to-ServiceNow flow
-- Click **Call** to start mic capture; chunks stream to `/v1/audio/transcribe-file`.
+- Click **Call** to start mic capture; chunks stream to `/v1/audio/transcribe-file` (fallbacks: querystring preset, `/v1/audio/transcribe`). Logs show the chosen endpoint.
 - Each transcript is sent to `/v1/agent/plan-and-act` (fallback: `/v1/chat`) with `mode=servicenow_demo`.
 - The backend returns tool calls + final text; the UI renders an actions timeline.
 - Mock ServiceNow is supported; no keys are stored in the browser.
+- Tool buttons (search, get ticket, add work note) call the ServiceNow mock/real endpoints directly for quick testing.
 
 ## Example prompts
 - "Check INC0012345 status"
