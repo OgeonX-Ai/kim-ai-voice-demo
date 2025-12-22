@@ -1,7 +1,77 @@
-# Dev Updates
-
-- 2025-12-17 — [Add ServiceNow voice assistant demo and docs](./2025-12-17-pr-6.md)
 # Dev Log
+
 Latest 100 merged PRs across public repositories in **OgeonX-Ai**.
+
 | Date | Repo | PR | + / - | Files |
 | --- | --- | --- | --- | --- |
+| 2025-12-22 | My-CV | [Refine print styles for compact PDF layout](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-22-My-CV-pr-6.md) | +undefined / -undefined | undefined |
+| 2025-12-22 | My-CV | [Adjust hero layout for compact grid](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-22-My-CV-pr-5.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | My-CV | [Add modal skills inventory to CV site](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-4.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Stabilize Gemini triage workflow script](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-30.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Stabilize Gemini triage workflow script](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-29.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Fix core redeclaration in triage workflow](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-28.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add manual triage trigger and showcase summary workflow](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-27.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add manual triage trigger and showcase summary workflow](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-26.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Gracefully handle missing faster-whisper dependency](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-25.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Gate faster-whisper on supported Python versions and document runner guidance](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-24.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add helper scripts and align CI and docs for showcase](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-23.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Fix Ruff issues in backend](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-22.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Fix CI workflow ruff invocation on Windows runner](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-21.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Align triage triggers with smoke workflow name](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-20.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add Gemini-based CI failure triage automation](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-19.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add Windows self-hosted pipelines and docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-18.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add Windows self-hosted pipelines and docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-17.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | enterprise-ai-gateway | [Add Windows self-hosted runner automation](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-16.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | My-CV | [Restore hero highlight stack and correct certifications](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-3.md) | +undefined / -undefined | undefined |
+| 2025-12-18 | My-CV | [Modernize CV layout and section order](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-2.md) | +undefined / -undefined | undefined |
+| 2025-12-17 | kim-ai-voice-demo | [Add ServiceNow voice assistant demo and docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-17-kim-ai-voice-demo-pr-6.md) | +undefined / -undefined | undefined |
+| 2025-12-17 | enterprise-ai-gateway | [Add structured JSON logging for debug stream visibility](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-17-enterprise-ai-gateway-pr-15.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | enterprise-ai-gateway | [Add conversion-aware transcription endpoint and debug log stream](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-14.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | My-CV | [Add certifications and current work sections to CV](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-My-CV-pr-1.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | kim-ai-voice-demo | [Add call-style Whisper experience with backend guidance](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-5.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | enterprise-ai-gateway | [Add runtime stats endpoint and enrich health metadata](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-13.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | kim-ai-voice-demo | [Add GitHub Actions automation for Dev Updates blog](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-4.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | kim-ai-voice-demo | [Add backend automation for ElevenLabs agents and Whisper playground](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-3.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | enterprise-ai-gateway | [Add local Whisper playground and API endpoints](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-11.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | kim-ai-voice-demo | [Add ElevenLabs CTA and invite link setup guidance](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-2.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | kim-ai-voice-demo | [Add ElevenLabs CTA guide and redirect resources](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-1.md) | +undefined / -undefined | undefined |
+| 2025-12-16 | enterprise-ai-gateway | [Add Android parity checklist and doc links](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-10.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Add demo presets and stubbed provider options](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-9.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Refresh web UI layout and endpoint controls](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-8.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Add Azure scalability report and cross-reference docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-7.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Add AI provider matrices and voice docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-6.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Add automated tests, CI, and onboarding docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-5.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Add real connectors and config validation](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-3.md) | +undefined / -undefined | undefined |
+| 2025-12-15 | enterprise-ai-gateway | [Create enterprise AI gateway scaffold](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-15-enterprise-ai-gateway-pr-1.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle HF client init lazily and harden upstream errors](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-35.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix AI talk pipeline, logging, and playback stability](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-34.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix backend talk endpoint parsing and voice handling](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-33.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix HF client initialization with pinned huggingface-hub version](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-32.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Use FastAPI request object directly in /talk](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-31.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix /talk handler request reference](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-30.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle Hugging Face timeout without response](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-29.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle LLM timeouts and HTTP errors](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-28.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix /talk audio form handling](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-27.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix /talk audio form handling](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-26.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle JSON parsing for /talk text prompts](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-24.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Map friendly voice labels to ElevenLabs IDs for talk endpoint](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-23.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle JSON and form prompts on talk endpoint](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-22.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle text prompts on talk endpoint](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-21.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Add merge hints to resolve duplicate declarations](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-20.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix backend URL reference and appcompat theme support](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-19.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix backend URL reference in MainActivity](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-18.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Rename backend constants to avoid IDE symbol conflicts](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-17.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix Material theme reference to resolve resource errors](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-16.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Add Azure deployment docs and affiliate guidance](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-15.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix Kotlin response body checks](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-14.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Handle backend response empties safely](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-13.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Fix OutlinedTextField colors for Material3](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-12.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Remove XML comments causing theme parse errors](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-11.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Improve SDK bootstrap reuse and docs](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-10.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Prompt for missing backend env vars and add multipart dependency](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-9.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Improve Whisper installation guidance and SDK bootstrap resilience](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-8.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Add local test runner to bypass Gradle download issues](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-6.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Add basic unit and instrumented tests](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-5.md) | +undefined / -undefined | undefined |
+| 2025-12-14 | android | [Add backend service and improve error handling](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-14-android-pr-2.md) | +undefined / -undefined | undefined |
+| 2025-12-13 | android | [Refine audio request handling and UI state](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-13-android-pr-3.md) | +undefined / -undefined | undefined |
+| 2025-12-13 | android | [Add compose UI and backend messaging improvements](https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-13-android-pr-1.md) | +undefined / -undefined | undefined |

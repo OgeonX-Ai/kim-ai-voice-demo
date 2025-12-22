@@ -1,8 +1,240 @@
 {
-  "totalPRs": 0,
-  "totalAdditions": 0,
-  "totalDeletions": 0,
-  "netLoc": 0,
-  "perRepo": {},
-  "recent": []
+  "totalPRs": 71,
+  "totalAdditions": null,
+  "totalDeletions": null,
+  "netLoc": null,
+  "perRepo": {
+    "My-CV": {
+      "prs": 6,
+      "additions": null,
+      "deletions": null
+    },
+    "enterprise-ai-gateway": {
+      "prs": 27,
+      "additions": null,
+      "deletions": null
+    },
+    "kim-ai-voice-demo": {
+      "prs": 6,
+      "additions": null,
+      "deletions": null
+    },
+    "android": {
+      "prs": 32,
+      "additions": null,
+      "deletions": null
+    }
+  },
+  "recent": [
+    {
+      "repo": "My-CV",
+      "number": 6,
+      "title": "Refine print styles for compact PDF layout",
+      "merged_at": "2025-12-22T12:51:13Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-22-My-CV-pr-6.md"
+    },
+    {
+      "repo": "My-CV",
+      "number": 5,
+      "title": "Adjust hero layout for compact grid",
+      "merged_at": "2025-12-22T12:30:34Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-22-My-CV-pr-5.md"
+    },
+    {
+      "repo": "My-CV",
+      "number": 4,
+      "title": "Add modal skills inventory to CV site",
+      "merged_at": "2025-12-18T18:33:41Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-4.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 30,
+      "title": "Stabilize Gemini triage workflow script",
+      "merged_at": "2025-12-18T16:42:59Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-30.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 29,
+      "title": "Stabilize Gemini triage workflow script",
+      "merged_at": "2025-12-18T16:29:27Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-29.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 28,
+      "title": "Fix core redeclaration in triage workflow",
+      "merged_at": "2025-12-18T16:19:11Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-28.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 27,
+      "title": "Add manual triage trigger and showcase summary workflow",
+      "merged_at": "2025-12-18T16:11:02Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-27.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 26,
+      "title": "Add manual triage trigger and showcase summary workflow",
+      "merged_at": "2025-12-18T15:58:09Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-26.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 25,
+      "title": "Gracefully handle missing faster-whisper dependency",
+      "merged_at": "2025-12-18T15:38:39Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-25.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 24,
+      "title": "Gate faster-whisper on supported Python versions and document runner guidance",
+      "merged_at": "2025-12-18T15:29:28Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-24.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 23,
+      "title": "Add helper scripts and align CI and docs for showcase",
+      "merged_at": "2025-12-18T15:12:46Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-23.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 22,
+      "title": "Fix Ruff issues in backend",
+      "merged_at": "2025-12-18T14:53:05Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-22.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 21,
+      "title": "Fix CI workflow ruff invocation on Windows runner",
+      "merged_at": "2025-12-18T14:34:14Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-21.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 20,
+      "title": "Align triage triggers with smoke workflow name",
+      "merged_at": "2025-12-18T14:27:39Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-20.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 19,
+      "title": "Add Gemini-based CI failure triage automation",
+      "merged_at": "2025-12-18T14:09:28Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-19.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 18,
+      "title": "Add Windows self-hosted pipelines and docs",
+      "merged_at": "2025-12-18T13:47:18Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-18.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 17,
+      "title": "Add Windows self-hosted pipelines and docs",
+      "merged_at": "2025-12-18T13:30:49Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-17.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 16,
+      "title": "Add Windows self-hosted runner automation",
+      "merged_at": "2025-12-18T13:02:31Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-enterprise-ai-gateway-pr-16.md"
+    },
+    {
+      "repo": "My-CV",
+      "number": 3,
+      "title": "Restore hero highlight stack and correct certifications",
+      "merged_at": "2025-12-18T12:31:50Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-3.md"
+    },
+    {
+      "repo": "My-CV",
+      "number": 2,
+      "title": "Modernize CV layout and section order",
+      "merged_at": "2025-12-18T12:19:40Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-18-My-CV-pr-2.md"
+    },
+    {
+      "repo": "kim-ai-voice-demo",
+      "number": 6,
+      "title": "Add ServiceNow voice assistant demo and docs",
+      "merged_at": "2025-12-17T00:17:06Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-17-kim-ai-voice-demo-pr-6.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 15,
+      "title": "Add structured JSON logging for debug stream visibility",
+      "merged_at": "2025-12-17T00:12:50Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-17-enterprise-ai-gateway-pr-15.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 14,
+      "title": "Add conversion-aware transcription endpoint and debug log stream",
+      "merged_at": "2025-12-16T23:46:11Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-14.md"
+    },
+    {
+      "repo": "My-CV",
+      "number": 1,
+      "title": "Add certifications and current work sections to CV",
+      "merged_at": "2025-12-16T22:21:01Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-My-CV-pr-1.md"
+    },
+    {
+      "repo": "kim-ai-voice-demo",
+      "number": 5,
+      "title": "Add call-style Whisper experience with backend guidance",
+      "merged_at": "2025-12-16T22:16:00Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-5.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 13,
+      "title": "Add runtime stats endpoint and enrich health metadata",
+      "merged_at": "2025-12-16T22:05:25Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-13.md"
+    },
+    {
+      "repo": "kim-ai-voice-demo",
+      "number": 4,
+      "title": "Add GitHub Actions automation for Dev Updates blog",
+      "merged_at": "2025-12-16T21:30:32Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-4.md"
+    },
+    {
+      "repo": "kim-ai-voice-demo",
+      "number": 3,
+      "title": "Add backend automation for ElevenLabs agents and Whisper playground",
+      "merged_at": "2025-12-16T20:58:58Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-3.md"
+    },
+    {
+      "repo": "enterprise-ai-gateway",
+      "number": 11,
+      "title": "Add local Whisper playground and API endpoints",
+      "merged_at": "2025-12-16T20:16:51Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-enterprise-ai-gateway-pr-11.md"
+    },
+    {
+      "repo": "kim-ai-voice-demo",
+      "number": 2,
+      "title": "Add ElevenLabs CTA and invite link setup guidance",
+      "merged_at": "2025-12-16T19:17:54Z",
+      "fileLink": "https://ogeonx-ai.github.io/kim-ai-voice-demo/webdemo/updates/2025-12-16-kim-ai-voice-demo-pr-2.md"
+    }
+  ]
 }
