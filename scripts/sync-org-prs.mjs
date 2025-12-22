@@ -54,8 +54,23 @@ function saveCache(cache) {
 async function fetchAllRepos() {
   const repos = [];
   let page = 1;
+  let baseUrl = `https://api.github.com/orgs/${ORG}/repos`;
   while (true) {
-    const pageRepos = await githubRequest(`https://api.github.com/orgs/${ORG}/repos?per_page=100&page=${page}`);
+    const response = await fetch(`${baseUrl}?per_page=100&page=${page}`, { headers });
+    if (response.status === 404) {
+      if (baseUrl.includes('/orgs/')) {
+        baseUrl = `https://api.github.com/users/${ORG}/repos`;
+        page = 1;
+        continue;
+      }
+      const text = await response.text();
+      throw new Error(`GitHub API error ${response.status}: ${text}`);
+    }
+    if (!response.ok) {
+      const text = await response.text();
+      throw new Error(`GitHub API error ${response.status}: ${text}`);
+    }
+    const pageRepos = await response.json();
     if (!Array.isArray(pageRepos) || pageRepos.length === 0) break;
     repos.push(...pageRepos.filter((repo) => !repo.archived && repo.private === false));
     page += 1;

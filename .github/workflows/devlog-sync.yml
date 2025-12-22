@@ -20,12 +20,16 @@ jobs:
         with:
           node-version: '20'
       - name: Install dependencies
-        run: npm install
-        working-directory: scripts
+        run: |
+          if [ -f scripts/package.json ]; then
+            npm install --prefix scripts
+          else
+            echo "No scripts/package.json; skipping npm install."
+          fi
         continue-on-error: true
       - name: Sync merged PRs across org
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           GH_AGGREGATOR_TOKEN: ${{ secrets.GH_AGGREGATOR_TOKEN }}
         run: |
           node scripts/sync-org-prs.mjs
